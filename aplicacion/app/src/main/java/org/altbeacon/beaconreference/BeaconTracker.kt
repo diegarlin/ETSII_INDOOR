@@ -46,6 +46,7 @@ class BeaconTracker{
         val runnable = object : Runnable {
             override fun run() {
                 updateRoomRecords()
+                //Lo hace cada minuto
                 handler.postDelayed(this, 1 * 60 * 1000) //IMPORTANTE CAMBIAR A 10 MINUTOS
             }
         }
@@ -56,6 +57,11 @@ class BeaconTracker{
             var newclosestBeacon = getClosestBeacon()
 
             if (newclosestBeacon != closestBeacon) {
+                if(newclosestBeacon.equals("")){
+                    //tipo salida
+                }else{
+                    //tipo entrada
+                }
                 Log.d("BeaconTracker", "Antiguo: $closestBeacon, Nuevo: $newclosestBeacon")
                 closestBeacon = newclosestBeacon
             }else{
