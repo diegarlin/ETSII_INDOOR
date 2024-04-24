@@ -18,17 +18,21 @@ import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 class MainActivity : Activity() {
     private lateinit var loginButton: Button
     private lateinit var logoutButton: Button
+    private lateinit var registerButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.principal)
         loginButton = findViewById<Button>(R.id.loginButton)
         logoutButton = findViewById<Button>(R.id.logoutButton)
+        registerButton = findViewById<Button>(R.id.registerButton)
         val savedToken = SharedPreferencesManager.getTokenFromSharedPreferences(this@MainActivity)
         if (!savedToken.isNullOrBlank()) {
             loginButton.visibility = View.GONE
             logoutButton.visibility = View.VISIBLE
+            registerButton.visibility = View.GONE
         } else {
             loginButton.visibility = View.VISIBLE
+            registerButton.visibility = View.VISIBLE
             logoutButton.visibility = View.GONE
         }
 //        val serviceIntent = Intent(this, BeaconForegroundService::class.java)
@@ -85,6 +89,11 @@ class MainActivity : Activity() {
         startActivity(intent)
     }
 
+    fun registerButtonTapped(view: View) {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
     fun closestBeaconTapped(view: View) {
         val beaconTracker = (application as BeaconReferenceApplication).beaconTracker
         beaconTracker.updateRoomRecords()
@@ -93,6 +102,7 @@ class MainActivity : Activity() {
         SharedPreferencesManager.clearTokenFromSharedPreferences(this@MainActivity)
         loginButton.visibility = View.VISIBLE
         logoutButton.visibility = View.GONE
+        registerButton.visibility = View.VISIBLE
     }
     companion object {
         val TAG = "MainActivity"

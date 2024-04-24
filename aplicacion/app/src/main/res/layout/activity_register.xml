@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorAccent"
-        android:text="Login"
+        android:text="Registro"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -52,11 +52,11 @@
             android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/registerButton"
             style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iniciar sesión" />
+            android:text="Registrarse" />
 
         <TextView
             android:id="@+id/errorTextView"

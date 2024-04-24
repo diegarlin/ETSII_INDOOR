@@ -17,34 +17,33 @@ import android.widget.ProgressBar
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
-class LoginActivity : Activity() {
+class RegisterActivity : Activity() {
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
-    private lateinit var loginButton: Button
+    private lateinit var registerButton: Button
     private lateinit var errorTextView: TextView
     private lateinit var progressBar: ProgressBar
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
         usernameEditText = findViewById(R.id.usernameEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
-        loginButton = findViewById(R.id.loginButton)
+        registerButton = findViewById(R.id.registerButton)
         errorTextView = findViewById(R.id.errorTextView)
         progressBar = findViewById(R.id.progressBar)
         errorTextView.visibility = View.GONE
 
-        loginButton.setOnClickListener {
+        registerButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            loginUser(username, password)
+            registerUser(username, password)
         }
     }
 
-    private fun loginUser(username: String, password: String) {
+    private fun registerUser(username: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
                 progressBar.visibility = View.VISIBLE
@@ -52,20 +51,17 @@ class LoginActivity : Activity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = BeaconReferenceApplication.deviceID
-                val response = ApiClient.login(this@LoginActivity, username, password, deviceID)
+                val response = ApiClient.register(this@RegisterActivity, username, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {
                     val responseBody = response.body()
 
                     // Verifica si la respuesta contiene un token
-                    val token = responseBody?.get("access_token")?.asString
+                    val msg = responseBody?.get("msg")?.asString
 
-                    if (!token.isNullOrBlank()) {
+                    if (msg.equals("Usuario registrado exitosamente")) {
 
-                        SharedPreferencesManager.saveTokenToSharedPreferences(this@LoginActivity, token)
-
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
                     }
                 } else {
@@ -78,7 +74,7 @@ class LoginActivity : Activity() {
                     showError(message)
                 }
             } catch (e: Exception) {
-                showError("Error del servidor.\nInténtalo de nuevo")
+                showError("Error del servidor.\nInténtalo de nuevo.")
             }finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE

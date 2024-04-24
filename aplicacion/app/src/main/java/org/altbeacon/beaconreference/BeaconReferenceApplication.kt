@@ -22,6 +22,8 @@ import org.altbeacon.beacon.MonitorNotifier
 import org.altbeacon.beacon.RangeNotifier
 import org.altbeacon.beacon.Region
 import org.altbeacon.beacon.RegionViewModel
+import android.provider.Settings
+
 
 class BeaconReferenceApplication: Application() {
     // the region definition is a wildcard that matches all beacons regardless of identifiers.
@@ -31,11 +33,15 @@ class BeaconReferenceApplication: Application() {
     var region = Region("all-beacons", null, null, null)
     lateinit var beaconTracker: BeaconTracker // Debe ser private
 
+
+
     override fun onCreate() {
         super.onCreate()
         SharedPreferencesManager.init(this)
         val beaconManager = BeaconManager.getInstanceForApplication(this)
+        deviceID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
+        Log.d("deviceid", deviceID)
         BeaconManager.setDebug(true)
         beaconManager.setEnableScheduledScanJobs(false);
         //Escaneo cada minuto cuando está en background y tarda en escanear 5 segundos
@@ -167,6 +173,7 @@ class BeaconReferenceApplication: Application() {
 
     companion object {
         val TAG = "BeaconReference"
+        lateinit var deviceID: String
     }
 
 }

@@ -25,6 +25,7 @@
         <activity android:name=".MapaActivity"/>
         <activity android:name=".MonitorizarActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainActivity" android:exported="true">
 
             <intent-filter>

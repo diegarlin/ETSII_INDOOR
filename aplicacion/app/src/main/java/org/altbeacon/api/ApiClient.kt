@@ -11,7 +11,7 @@ import android.util.Log
 //suspend lo que hace es bloquear el hilo donde se ejecuta para hacer una operación asíncrona sin parar los demás procesos para así
 //la aplicación sigua ejecutándose mientras llama a la API
 object ApiClient {
-    private const val BASE_URL = "http://192.168.1.184:5000" // Reemplaza con la URL de tu API
+    private const val BASE_URL = "https://api-flask-t5ze.onrender.com/" // Reemplaza con la URL de tu API
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -20,9 +20,15 @@ object ApiClient {
 
     val apiService: ApiService = retrofit.create(ApiService::class.java)
 
-    suspend fun login(context: Context, username: String, password: String): Response<JsonObject> {
-        val response = apiService.login(LoginRequest(username, password))
-        Log.d("api", "bien")
+    suspend fun login(context: Context, username: String, password: String, deviceID: String): Response<JsonObject> {
+        val response = apiService.login(LoginRequest(username, password, deviceID))
+        Log.d("api", "Logeo correcto")
+        return response
+    }
+
+    suspend fun register(context: Context, username: String, password: String, deviceID: String): Response<JsonObject> {
+        val response = apiService.register(RegisterRequest(username, password, deviceID))
+        Log.d("api", "Registro bien hecho")
         return response
     }
 }
