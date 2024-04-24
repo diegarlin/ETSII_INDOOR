@@ -1,16 +1,13 @@
 package org.altbeacon.beaconreference
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.altbeacon.api.ApiClient
-import android.util.Log
-import com.google.gson.JsonObject
+import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
 import android.widget.ProgressBar
@@ -51,7 +48,7 @@ class RegisterActivity : Activity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = BeaconReferenceApplication.deviceID
-                val response = ApiClient.register(this@RegisterActivity, username, password, deviceID)
+                val response = ApiClientUsuarios.register(this@RegisterActivity, username, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {

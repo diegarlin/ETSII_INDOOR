@@ -1,11 +1,11 @@
-package org.altbeacon.api
+package org.altbeacon.apiUsers
 
 import com.google.gson.JsonObject
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface ApiService {
+interface ApiServiceUsuarios {
     @POST("/login")
     suspend fun login(@Body request: LoginRequest): Response<JsonObject>
 

@@ -8,9 +8,7 @@ import android.widget.EditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.altbeacon.api.ApiClient
-import android.util.Log
-import com.google.gson.JsonObject
+import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
 import android.widget.ProgressBar
@@ -52,7 +50,7 @@ class LoginActivity : Activity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = BeaconReferenceApplication.deviceID
-                val response = ApiClient.login(this@LoginActivity, username, password, deviceID)
+                val response = ApiClientUsuarios.login(this@LoginActivity, username, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {

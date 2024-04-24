@@ -1,14 +1,13 @@
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.altbeacon.api.ApiClient
 import org.altbeacon.beacon.Beacon
 import java.util.concurrent.ConcurrentHashMap
 import android.os.Handler
 import android.os.Looper
+import org.altbeacon.beaconreference.BeaconReferenceApplication
+
 class BeaconTracker{
     private val beaconRecords = ConcurrentHashMap<String, MutableList<Double>>()
     private val handler = Handler(Looper.getMainLooper())
@@ -52,24 +51,41 @@ class BeaconTracker{
         }
         handler.post(runnable)
     }
-    fun updateRoomRecords() {// Debe ser private
+    fun updateRoomRecords() {
         GlobalScope.launch(Dispatchers.IO) {
-            var newclosestBeacon = getClosestBeacon()
-
-            if (newclosestBeacon != closestBeacon) {
-                if(newclosestBeacon.equals("")){
-                    //tipo salida
+            try {
+                var newclosestBeacon = getClosestBeacon()
+                val deviceID = BeaconReferenceApplication.deviceID
+                if (newclosestBeacon != closestBeacon) {
+                    if(newclosestBeacon.equals("")){
+                        //Anadir registro de salida
+                        val registroSalida = Registro(beacon = closestBeacon, tipo = "salida", deviceID = deviceID)
+                        val response = ApiClientRegistros.createRegistro(registroSalida)
+                        if (response.isSuccessful) {
+                            Log.d("BeaconTracker", "Registro de salida creado exitosamente")
+                        } else {
+                            Log.d("BeaconTracker", "Error al crear registro de salida")
+                        }
+                    }else{
+                        //Anadir registro de entrada
+                        val registroEntrada = Registro(beacon = newclosestBeacon, tipo = "entrada", deviceID = deviceID)
+                        val response = ApiClientRegistros.createRegistro(registroEntrada)
+                        if (response.isSuccessful) {
+                            Log.d("BeaconTracker", "Registro de entrada creado exitosamente")
+                        } else {
+                            Log.d("BeaconTracker", "Error al crear registro de entrada")
+                        }
+                    }
+                    Log.d("BeaconTracker", "Antiguo: $closestBeacon, Nuevo: $newclosestBeacon")
+                    closestBeacon = newclosestBeacon
                 }else{
-                    //tipo entrada
+                    Log.d("BeaconTracker", "Sigues en la misma habitación con beaconID: $closestBeacon ")
                 }
-                Log.d("BeaconTracker", "Antiguo: $closestBeacon, Nuevo: $newclosestBeacon")
-                closestBeacon = newclosestBeacon
-            }else{
-                Log.d("BeaconTracker", "Beacon $closestBeacon is the closest beacon")
+
+                beaconRecords.clear()
+            } catch (e: Exception) {
+                Log.e("BeaconTracker", "Error al actualizar los registros de la sala", e)
             }
-
-            beaconRecords.clear()
-
         }
     }
 }
