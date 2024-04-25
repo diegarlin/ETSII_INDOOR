@@ -4,6 +4,7 @@ import SharedPreferencesManager
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,7 +12,8 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import org.altbeacon.beacon.BeaconManager
+import android.os.PowerManager
+import android.os.Build
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 
 
@@ -35,9 +37,13 @@ class MainActivity : Activity() {
             registerButton.visibility = View.VISIBLE
             logoutButton.visibility = View.GONE
         }
-//        val serviceIntent = Intent(this, BeaconForegroundService::class.java)
-//        startForegroundService(serviceIntent)
 
+
+        if (BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
+            (application as BeaconReferenceApplication).setupForegroundService()
+        }
+
+        checkBatteryOptimizations()
 
     }
 
@@ -48,6 +54,7 @@ class MainActivity : Activity() {
     override fun onResume() {
         Log.d(TAG, "onResume")
         super.onResume()
+
 
         if (!BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) ||
@@ -103,6 +110,18 @@ class MainActivity : Activity() {
         loginButton.visibility = View.VISIBLE
         logoutButton.visibility = View.GONE
         registerButton.visibility = View.VISIBLE
+    }
+
+    fun checkBatteryOptimizations() {
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        val packageName = packageName
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!powerManager.isIgnoringBatteryOptimizations(packageName)) {
+                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+                intent.data = Uri.parse("package:$packageName")
+                startActivity(intent)
+            }
+        }
     }
     companion object {
         val TAG = "MainActivity"

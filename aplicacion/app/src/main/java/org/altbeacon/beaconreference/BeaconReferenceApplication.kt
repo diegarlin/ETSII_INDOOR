@@ -45,8 +45,10 @@ class BeaconReferenceApplication: Application() {
         BeaconManager.setDebug(true)
         beaconManager.setEnableScheduledScanJobs(false);
         //Escaneo cada 5 segundos cuando está en background y tarda en escanear 1 segundo
-        beaconManager.backgroundBetweenScanPeriod=5000;
-        beaconManager.backgroundScanPeriod = 1000;
+        beaconManager.foregroundBetweenScanPeriod = 5000L // 5 segundos
+        beaconManager.foregroundScanPeriod = 1000L // 1 segundo
+        beaconManager.backgroundBetweenScanPeriod=5000L;
+        beaconManager.backgroundScanPeriod = 1000L;
         // Solo busco iBeacons
         beaconManager.getBeaconParsers().clear();
         val parser = BeaconParser().
