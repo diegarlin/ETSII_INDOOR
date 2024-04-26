@@ -44,7 +44,7 @@ class MainActivity : Activity() {
             Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
         }
 //        if (BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
-//            (application as BeaconReferenceApplication).setupForegroundService()
+//            (application as ETSIINDOOR).setupForegroundService()
 //        }
 
         checkBatteryOptimizations()
@@ -105,7 +105,7 @@ class MainActivity : Activity() {
     }
 
     fun closestBeaconTapped(view: View) {
-        val beaconTracker = (application as BeaconReferenceApplication).beaconTracker
+        val beaconTracker = (application as ETSIINDOOR).beaconTracker
         beaconTracker.updateRoomRecords()
     }
     fun logoutButtonTapped(view: View) {

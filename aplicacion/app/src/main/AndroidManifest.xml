@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     <!--  IMPORTNATE QUITAR android:usesCleartextTraffic="true" ya que podría acceder a HTTP, mi api debe tener certificados ya que sino fallará-->
     <application
-        android:name="BeaconReferenceApplication"
+        android:name="ETSIINDOOR"
         
         android:usesCleartextTraffic="true"
         android:allowBackup="true"

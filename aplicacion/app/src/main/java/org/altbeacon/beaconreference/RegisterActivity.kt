@@ -13,7 +13,6 @@ import android.widget.TextView
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
-import android.widget.Toast
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
@@ -55,7 +54,7 @@ class RegisterActivity : Activity() {
             }
             try {
                 // Realiza la llamada a la API para el inicio de sesión
-                val deviceID = BeaconReferenceApplication.deviceID
+                val deviceID = ETSIINDOOR.deviceID
                 val response = ApiClientUsuarios.register(this@RegisterActivity, username,email, password, deviceID)
 
                 // Verifica si la respuesta es exitosa

@@ -31,23 +31,34 @@
             android:textSize="16sp"
             android:visibility="gone" />
 
-        <EditText
-            android:id="@+id/usernameOrEmailEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameOrEmailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario/Email" />
+            app:startIconDrawable="@drawable/ic_username"
+            android:hint="Nombre de usuario/Email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameOrEmailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="password_toggle">
+            app:startIconDrawable="@drawable/ic_password"
+            app:endIconMode="password_toggle"
+            android:hint="Contraseña">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>

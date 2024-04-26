@@ -13,27 +13,26 @@ import androidx.lifecycle.Observer
 import org.altbeacon.beacon.Beacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.MonitorNotifier
-import android.content.Intent
-import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
+
 class MonitorizarActivity : AppCompatActivity() {
     lateinit var beaconListView: ListView
     lateinit var beaconCountTextView: TextView
     lateinit var monitoringButton: Button
     lateinit var rangingButton: Button
-    lateinit var beaconReferenceApplication: BeaconReferenceApplication
+    lateinit var ETSIINDOOR: ETSIINDOOR
     var alertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        beaconReferenceApplication = application as BeaconReferenceApplication
+        ETSIINDOOR = application as ETSIINDOOR
 
         // Set up a Live Data observer for beacon data
         val beaconManager = BeaconManager.getInstanceForApplication(this)
-        val regionViewModel = beaconManager.getRegionViewModel(beaconReferenceApplication.region)
-//        val regionViewModel1 = beaconManager.getRegionViewModel(beaconReferenceApplication.region1)
-//        val regionViewModel2 = beaconManager.getRegionViewModel(beaconReferenceApplication.region2)
+        val regionViewModel = beaconManager.getRegionViewModel(ETSIINDOOR.region)
+//        val regionViewModel1 = beaconManager.getRegionViewModel(ETSIINDOOR.region1)
+//        val regionViewModel2 = beaconManager.getRegionViewModel(ETSIINDOOR.region2)
 
         // Observer will be called each time the monitored regionState changes (inside vs. outside region)
         regionViewModel.regionState.observe(this, monitoringObserver)
@@ -115,12 +114,12 @@ class MonitorizarActivity : AppCompatActivity() {
     fun rangingButtonTapped(view: View) {
         val beaconManager = BeaconManager.getInstanceForApplication(this)
         if (beaconManager.rangedRegions.size == 0) {
-            beaconManager.startRangingBeacons(beaconReferenceApplication.region)
+            beaconManager.startRangingBeacons(ETSIINDOOR.region)
             rangingButton.text = "Stop Ranging"
             beaconCountTextView.text = "Ranging enabled -- awaiting first callback"
         }
         else {
-            beaconManager.stopRangingBeacons(beaconReferenceApplication.region)
+            beaconManager.stopRangingBeacons(ETSIINDOOR.region)
             rangingButton.text = "Start Ranging"
             beaconCountTextView.text = "Ranging disabled -- no beacons detected"
             beaconListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
@@ -132,14 +131,14 @@ class MonitorizarActivity : AppCompatActivity() {
         var dialogMessage = ""
         val beaconManager = BeaconManager.getInstanceForApplication(this)
         if (beaconManager.monitoredRegions.size == 0) {
-            beaconManager.startMonitoring(beaconReferenceApplication.region)
+            beaconManager.startMonitoring(ETSIINDOOR.region)
             dialogTitle = "Beacon monitoring started."
             dialogMessage = "You will see a dialog if a beacon is detected, and another if beacons then stop being detected."
             monitoringButton.text = "Stop Monitoring"
 
         }
         else {
-            beaconManager.stopMonitoring(beaconReferenceApplication.region)
+            beaconManager.stopMonitoring(ETSIINDOOR.region)
             dialogTitle = "Beacon monitoring stopped."
             dialogMessage = "You will no longer see dialogs when beacons start/stop being detected."
             monitoringButton.text = "Start Monitoring"

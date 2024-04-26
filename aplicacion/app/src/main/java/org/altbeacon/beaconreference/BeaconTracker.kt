@@ -6,7 +6,7 @@ import org.altbeacon.beacon.Beacon
 import java.util.concurrent.ConcurrentHashMap
 import android.os.Handler
 import android.os.Looper
-import org.altbeacon.beaconreference.BeaconReferenceApplication
+import org.altbeacon.beaconreference.ETSIINDOOR
 
 class BeaconTracker{
     private val beaconRecords = ConcurrentHashMap<String, MutableList<Double>>()
@@ -61,7 +61,7 @@ class BeaconTracker{
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 var newclosestBeacon = getClosestBeacon()
-                val deviceID = BeaconReferenceApplication.deviceID
+                val deviceID = ETSIINDOOR.deviceID
                 if (newclosestBeacon != closestBeacon) {
                     if(newclosestBeacon.equals("")){
                         //Anadir registro de salida

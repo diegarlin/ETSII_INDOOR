@@ -1,7 +1,6 @@
 package org.altbeacon.beaconreference
 
 import BeaconTracker
-import MyMonitorNotifier
 import SharedPreferencesManager
 import android.app.Application
 import android.app.Notification
@@ -17,15 +16,12 @@ import androidx.lifecycle.Observer
 import org.altbeacon.beacon.Beacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.BeaconParser
-import org.altbeacon.beacon.Identifier
 import org.altbeacon.beacon.MonitorNotifier
-import org.altbeacon.beacon.RangeNotifier
 import org.altbeacon.beacon.Region
-import org.altbeacon.beacon.RegionViewModel
 import android.provider.Settings
 
 
-class BeaconReferenceApplication: Application() {
+class ETSIINDOOR: Application() {
     // the region definition is a wildcard that matches all beacons regardless of identifiers.
     // if you only want to detect beacons with a specific UUID, change the id1 paremeter to
     // a UUID like Identifier.parse("2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")

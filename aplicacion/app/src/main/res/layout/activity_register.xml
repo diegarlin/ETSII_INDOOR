@@ -32,21 +32,39 @@
             android:textSize="16sp"
             android:visibility="gone" />
 
-        <EditText
-            android:id="@+id/usernameEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameTextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre de usuario" />
+            app:startIconDrawable="@drawable/ic_username"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/emailEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de usuario" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email" />
+            app:startIconDrawable="@drawable/ic_email"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"
             android:layout_width="match_parent"
+            app:startIconDrawable="@drawable/ic_password"
             android:layout_height="wrap_content"
             app:endIconMode="password_toggle">
 
