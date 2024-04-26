@@ -51,8 +51,8 @@ class BeaconTracker{
         val runnable = object : Runnable {
             override fun run() {
                 updateRoomRecords()
-                //Lo hace cada minuto
-                handler.postDelayed(this, 1 * 60 * 1000) //IMPORTANTE CAMBIAR A 10 MINUTOS
+                //Lo hace cada 2 minutos
+                handler.postDelayed(this, 2 * 60 * 1000) //IMPORTANTE CAMBIAR A 10 MINUTOS
             }
         }
         handler.post(runnable)

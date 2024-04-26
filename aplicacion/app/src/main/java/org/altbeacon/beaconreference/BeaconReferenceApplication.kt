@@ -44,10 +44,10 @@ class BeaconReferenceApplication: Application() {
         Log.d("deviceid", deviceID)
         BeaconManager.setDebug(true)
         beaconManager.setEnableScheduledScanJobs(false);
-        //Escaneo cada 5 segundos cuando está en background y tarda en escanear 1 segundo
-        beaconManager.foregroundBetweenScanPeriod = 5000L // 5 segundos
-        beaconManager.foregroundScanPeriod = 1000L // 1 segundo
-        beaconManager.backgroundBetweenScanPeriod=5000L;
+        //Escaneo cada 10 segundos cuando está en background y tarda en escanear 1 segundo
+        beaconManager.foregroundBetweenScanPeriod = 5000; // 5 segundos
+        beaconManager.foregroundScanPeriod = 1000; // 1 segundo
+        beaconManager.backgroundBetweenScanPeriod=10000;
         beaconManager.backgroundScanPeriod = 1000L;
         // Solo busco iBeacons
         beaconManager.getBeaconParsers().clear();
@@ -108,7 +108,7 @@ class BeaconReferenceApplication: Application() {
 
     fun setupForegroundService() {
         val builder = Notification.Builder(this, "BeaconReferenceApp")
-        builder.setSmallIcon(R.drawable.ic_launcher_background)
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
         builder.setContentTitle("Scanning for Beacons")
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
@@ -133,7 +133,7 @@ class BeaconReferenceApplication: Application() {
         }
         else {
             Log.d(TAG, "inside beacon region: "+region)
-            sendNotification()
+//            sendNotification()
         }
     }
 
@@ -155,7 +155,7 @@ class BeaconReferenceApplication: Application() {
         val builder = NotificationCompat.Builder(this, "beacon-ref-notification-id")
             .setContentTitle("Beacon Reference Application")
             .setContentText("A beacon is nearby.")
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
         val stackBuilder = TaskStackBuilder.create(this)
         stackBuilder.addNextIntent(Intent(this, MainActivity::class.java))
         val resultPendingIntent = stackBuilder.getPendingIntent(

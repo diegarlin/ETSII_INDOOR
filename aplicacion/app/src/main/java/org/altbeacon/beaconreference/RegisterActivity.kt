@@ -1,6 +1,7 @@
 package org.altbeacon.beaconreference
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,7 +11,9 @@ import kotlinx.coroutines.launch
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
@@ -36,6 +39,8 @@ class RegisterActivity : Activity() {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
 
+            hideKeyboard(this@RegisterActivity)
+
             registerUser(username, password)
         }
     }
@@ -58,7 +63,9 @@ class RegisterActivity : Activity() {
                     val msg = responseBody?.get("msg")?.asString
 
                     if (msg.equals("Usuario registrado exitosamente")) {
-
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        intent.putExtra("TOAST_MESSAGE", "Registro exitoso")
+                        startActivity(intent)
                         finish()
                     }
                 } else {
@@ -71,7 +78,7 @@ class RegisterActivity : Activity() {
                     showError(message)
                 }
             } catch (e: Exception) {
-                showError("Error del servidor.\nInténtalo de nuevo.")
+                showError("Error del servidor.\nInténtalo de nuevo en 1 minuto.") //CAMBIAR IMPORATNTE
             }finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE
@@ -80,7 +87,15 @@ class RegisterActivity : Activity() {
         }
     }
 
-
+    fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
+        var view = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
     private fun showError(message: String) {
         runOnUiThread {
             errorTextView.visibility = View.VISIBLE

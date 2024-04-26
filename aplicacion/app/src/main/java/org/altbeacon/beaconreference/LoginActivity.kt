@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
@@ -37,6 +39,7 @@ class LoginActivity : Activity() {
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
+            hideKeyboard(this@LoginActivity)
 
             loginUser(username, password)
         }
@@ -60,10 +63,10 @@ class LoginActivity : Activity() {
                     val token = responseBody?.get("access_token")?.asString
 
                     if (!token.isNullOrBlank()) {
-
                         SharedPreferencesManager.saveTokenToSharedPreferences(this@LoginActivity, token)
-
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        intent.putExtra("TOAST_MESSAGE", "Inicio de sesión exitoso")
+                        startActivity(intent)
                         finish()
                     }
                 } else {
@@ -76,13 +79,23 @@ class LoginActivity : Activity() {
                     showError(message)
                 }
             } catch (e: Exception) {
-                showError("Error del servidor.\nInténtalo de nuevo")
+                showError("Error del servidor.\nInténtalo de nuevo en 1 minuto") //CAMBIAR IMPORTANTE ?
             }finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE
                 }
             }
         }
+    }
+
+    fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
+        var view = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 

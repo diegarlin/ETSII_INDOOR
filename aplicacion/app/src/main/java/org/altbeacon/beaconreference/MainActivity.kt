@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Button
 import android.os.PowerManager
 import android.os.Build
+import android.widget.Toast
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 
 
@@ -38,10 +39,13 @@ class MainActivity : Activity() {
             logoutButton.visibility = View.GONE
         }
 
-
-        if (BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
-            (application as BeaconReferenceApplication).setupForegroundService()
+        val toastMessage = intent.getStringExtra("TOAST_MESSAGE")
+        if (!toastMessage.isNullOrEmpty()) {
+            Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
         }
+//        if (BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
+//            (application as BeaconReferenceApplication).setupForegroundService()
+//        }
 
         checkBatteryOptimizations()
 
@@ -54,7 +58,6 @@ class MainActivity : Activity() {
     override fun onResume() {
         Log.d(TAG, "onResume")
         super.onResume()
-
 
         if (!BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) ||
@@ -107,6 +110,7 @@ class MainActivity : Activity() {
     }
     fun logoutButtonTapped(view: View) {
         SharedPreferencesManager.clearTokenFromSharedPreferences(this@MainActivity)
+        Toast.makeText(this@MainActivity, "Logout exitoso", Toast.LENGTH_SHORT).show()
         loginButton.visibility = View.VISIBLE
         logoutButton.visibility = View.GONE
         registerButton.visibility = View.VISIBLE
