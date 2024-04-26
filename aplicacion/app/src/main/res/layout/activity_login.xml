@@ -32,10 +32,10 @@
             android:visibility="gone" />
 
         <EditText
-            android:id="@+id/usernameEditText"
+            android:id="@+id/usernameOrEmailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario" />
+            android:hint="Nombre de usuario/Email" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"

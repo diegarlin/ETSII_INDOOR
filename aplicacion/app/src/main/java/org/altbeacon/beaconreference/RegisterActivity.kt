@@ -19,6 +19,7 @@ import kotlinx.coroutines.withContext
 
 class RegisterActivity : Activity() {
     private lateinit var usernameEditText: EditText
+    private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var registerButton: Button
     private lateinit var errorTextView: TextView
@@ -29,6 +30,7 @@ class RegisterActivity : Activity() {
         setContentView(R.layout.activity_register)
 
         usernameEditText = findViewById(R.id.usernameEditText)
+        emailEditText= findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         registerButton = findViewById(R.id.registerButton)
         errorTextView = findViewById(R.id.errorTextView)
@@ -38,14 +40,15 @@ class RegisterActivity : Activity() {
         registerButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
+            val email = emailEditText.text.toString()
 
             hideKeyboard(this@RegisterActivity)
 
-            registerUser(username, password)
+            registerUser(username, email, password)
         }
     }
 
-    private fun registerUser(username: String, password: String) {
+    private fun registerUser(username: String, email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
                 progressBar.visibility = View.VISIBLE
@@ -53,7 +56,7 @@ class RegisterActivity : Activity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = BeaconReferenceApplication.deviceID
-                val response = ApiClientUsuarios.register(this@RegisterActivity, username, password, deviceID)
+                val response = ApiClientUsuarios.register(this@RegisterActivity, username,email, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {

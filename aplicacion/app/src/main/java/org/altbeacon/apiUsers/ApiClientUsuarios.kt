@@ -19,14 +19,14 @@ object ApiClientUsuarios {
 
     val apiService: ApiServiceUsuarios = retrofit.create(ApiServiceUsuarios::class.java)
 
-    suspend fun login(context: Context, username: String, password: String, deviceID: String): Response<JsonObject> {
-        val response = apiService.login(LoginRequest(username, password, deviceID))
+    suspend fun login(context: Context, usernameOrEmail: String, password: String, deviceID: String): Response<JsonObject> {
+        val response = apiService.login(LoginRequest(usernameOrEmail, password, deviceID))
         Log.d("api", "Logeo correcto")
         return response
     }
 
-    suspend fun register(context: Context, username: String, password: String, deviceID: String): Response<JsonObject> {
-        val response = apiService.register(RegisterRequest(username, password, deviceID))
+    suspend fun register(context: Context, username: String, email: String, password: String, deviceID: String): Response<JsonObject> {
+        val response = apiService.register(RegisterRequest(username, email, password, deviceID))
         Log.d("api", "Registro bien hecho")
         return response
     }

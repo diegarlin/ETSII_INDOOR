@@ -13,6 +13,10 @@ interface ApiServiceUsuarios {
     suspend fun register(@Body request: RegisterRequest): Response<JsonObject>
 }
 
-data class LoginRequest(val username: String, val password: String, val deviceID: String)
+data class LoginRequest(
+    val usernameOrEmail: String,
+    val password: String,
+    val deviceID: String
+)
 
-data class RegisterRequest(val username: String, val password: String, val deviceID: String)
+data class RegisterRequest(val username: String, val email: String, val password: String, val deviceID: String)

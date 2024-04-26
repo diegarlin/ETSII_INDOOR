@@ -3,6 +3,7 @@ package org.altbeacon.beaconreference
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +19,7 @@ import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
 class LoginActivity : Activity() {
-    private lateinit var usernameEditText: EditText
+    private lateinit var usernameOrEmailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
     private lateinit var errorTextView: TextView
@@ -29,7 +30,7 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        usernameEditText = findViewById(R.id.usernameEditText)
+        usernameOrEmailEditText = findViewById(R.id.usernameOrEmailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
         errorTextView = findViewById(R.id.errorTextView)
@@ -37,15 +38,15 @@ class LoginActivity : Activity() {
         errorTextView.visibility = View.GONE
 
         loginButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
+            val usernameOrEmail = usernameOrEmailEditText.text.toString()
             val password = passwordEditText.text.toString()
             hideKeyboard(this@LoginActivity)
 
-            loginUser(username, password)
+            loginUser(usernameOrEmail, password)
         }
     }
 
-    private fun loginUser(username: String, password: String) {
+    private fun loginUser(usernameOrEmail: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
                 progressBar.visibility = View.VISIBLE
@@ -53,7 +54,7 @@ class LoginActivity : Activity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = BeaconReferenceApplication.deviceID
-                val response = ApiClientUsuarios.login(this@LoginActivity, username, password, deviceID)
+                val response = ApiClientUsuarios.login(this@LoginActivity, usernameOrEmail, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {
@@ -70,6 +71,7 @@ class LoginActivity : Activity() {
                         finish()
                     }
                 } else {
+                    Log.d("API_ERROR", "Exception: ")
                     val errorBody = response.errorBody()?.string()
                     val jsonObject = JsonParser().parse(errorBody).asJsonObject
 
@@ -79,6 +81,7 @@ class LoginActivity : Activity() {
                     showError(message)
                 }
             } catch (e: Exception) {
+                Log.d("API_ERROR", "Exception: ", e)
                 showError("Error del servidor.\nInténtalo de nuevo en 1 minuto") //CAMBIAR IMPORTANTE ?
             }finally {
                 withContext(Dispatchers.Main) {
