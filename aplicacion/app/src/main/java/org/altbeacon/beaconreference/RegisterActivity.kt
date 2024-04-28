@@ -3,6 +3,7 @@ package org.altbeacon.beaconreference
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import kotlinx.coroutines.CoroutineScope
@@ -11,8 +12,10 @@ import kotlinx.coroutines.launch
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
@@ -43,7 +46,20 @@ class RegisterActivity : Activity() {
 
             hideKeyboard(this@RegisterActivity)
 
-            registerUser(username, email, password)
+            if (username.isBlank() || password.isBlank() || email.isBlank()) {
+                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
+            } else {
+                registerUser(username, email, password)
+            }
+        }
+
+        passwordEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                registerButton.performClick()
+                true
+            } else {
+                false
+            }
         }
     }
 
@@ -79,8 +95,19 @@ class RegisterActivity : Activity() {
 
                     showError(message)
                 }
-            } catch (e: Exception) {
-                showError("Error del servidor.\nInténtalo de nuevo en 1 minuto.") //CAMBIAR IMPORATNTE
+            } catch (e: java.net.SocketTimeoutException) {
+                runOnUiThread {
+                    Toast.makeText(this@RegisterActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                }
+            }catch (e: Exception){
+                runOnUiThread {
+                    Log.d("api", "Exception: ", e)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Error del servidor. Contacte con el administrador",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE

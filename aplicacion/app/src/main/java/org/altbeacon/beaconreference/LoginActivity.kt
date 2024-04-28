@@ -12,8 +12,10 @@ import kotlinx.coroutines.launch
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import android.widget.TextView
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
@@ -41,7 +43,20 @@ class LoginActivity : Activity() {
             val password = passwordEditText.text.toString()
             hideKeyboard(this@LoginActivity)
 
-            loginUser(usernameOrEmail, password)
+            if (usernameOrEmail.isBlank() || password.isBlank()) {
+                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
+            } else {
+                loginUser(usernameOrEmail, password)
+            }
+        }
+
+        passwordEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                loginButton.performClick()
+                true
+            } else {
+                false
+            }
         }
     }
 
@@ -79,9 +94,19 @@ class LoginActivity : Activity() {
 
                     showError(message)
                 }
-            } catch (e: Exception) {
-                Log.d("API_ERROR", "Exception: ", e)
-                showError("Error del servidor.\nInténtalo de nuevo en 1 minuto") //CAMBIAR IMPORTANTE ?
+            } catch (e: java.net.SocketTimeoutException) {
+                runOnUiThread {
+                    Toast.makeText(this@LoginActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                }
+            }catch (e: Exception){
+                runOnUiThread {
+                    Log.d("api", "Exception: ", e)
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Error del servidor. Contacte con el administrador",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE

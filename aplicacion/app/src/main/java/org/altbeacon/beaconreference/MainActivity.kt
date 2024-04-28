@@ -109,6 +109,11 @@ class MainActivity : Activity() {
         startActivity(intent)
     }
 
+    fun habitacionPorLetra(view: View) {
+        val intent = Intent(this, HabitacionPorLetraActivity::class.java)
+        startActivity(intent)
+    }
+
 
     fun closestBeaconTapped(view: View) {
         val beaconTracker = (application as ETSIINDOOR).beaconTracker
