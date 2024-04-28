@@ -10,4 +10,12 @@ interface ApiServiceRegistros {
 
     @POST("/registros")
     suspend fun createRegistro(@Body nuevoRegistro: Registro): Response<JsonObject>
+
+    @GET("/habitaciones/personas_por_habitacion")
+    suspend fun getPersonasPorHabitacion(): Response<List<Habitacion>>
+
+    data class Habitacion(
+        val habitacion: String,
+        val numPersonas: Int
+    )
 }

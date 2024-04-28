@@ -51,6 +51,17 @@
             android:layout_marginStart="8dp"
             android:visibility="visible"/>
 
+        <Button
+            android:id="@+id/habitacion"
+            android:onClick="habitacionButtonTapped"
+            android:text="Habitacion"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:visibility="visible"/>
+
     </LinearLayout>
 
     <LinearLayout

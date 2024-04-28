@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9D2235</color>
-    <color name="colorPrimaryDark">#850C1E</color>
-    <color name="colorAccent">#FFC72C</color>
-    <color name="White">#FFFFFF</color>
-    <color name="lightGray">#E1E1E1</color>
-    <color name="red">#FF0000</color>
+    <color name="colorPrimary">#153448</color> <!-- Verde azulado -->
+    <color name="colorPrimaryDark">#3C5B6F</color> <!-- Verde azulado oscuro -->
+    <color name="colorAccent">#948979</color> <!-- Naranja oscuro -->
+    <color name="White">#FFFFFF</color> <!-- Blanco -->
+    <color name="lightGray">#DFD0B8</color> <!-- Gris claro -->
+    <color name="red">#E64A19</color> <!-- Rojo oscuro -->
 </resources>

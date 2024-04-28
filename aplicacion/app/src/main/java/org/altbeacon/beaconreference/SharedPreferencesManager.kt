@@ -28,4 +28,9 @@ object SharedPreferencesManager {
         editor.remove(ACCESS_TOKEN_KEY)
         editor.apply()
     }
+
+    fun existsToken(context:Context): Boolean {
+        val sharedPreferences = context.getSharedPreferences(SHARED_PREFS_FILE_NAME, Context.MODE_PRIVATE)
+        return sharedPreferences.contains(ACCESS_TOKEN_KEY)
+    }
 }
