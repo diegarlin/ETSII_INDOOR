@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/lightGray"
+    android:background="@color/colorAccentLight"
     tools:context=".MainActivity">
 
     <TextView
@@ -25,6 +25,21 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@android:color/transparent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/habitacionPorLetra"
+            android:onClick="habitacionPorLetra"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Habitacion por letra" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

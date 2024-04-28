@@ -4,7 +4,7 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="8dp" /> <!-- Bordes redondeados -->
-            <solid android:color="@color/colorPrimaryDark" /> <!-- Color de fondo cuando se presiona -->
+            <solid android:color="@color/colorSecondary" /> <!-- Color de fondo cuando se presiona -->
 
         </shape>
     </item>
