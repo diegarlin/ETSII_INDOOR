@@ -26,4 +26,11 @@ object ApiClientRegistros {
         Log.d("api", "Obtención de registros correcto")
         return response
     }
+
+    suspend fun getPersonasPorHabitacionPorLetra(letra: String): Response<List<Habitacion>> {
+        val response = apiService.getPersonasPorHabitacionPorLetra(letra)
+        Log.d("api", "Obtención de registros por letra correcto")
+        return response
+    }
+
 }
