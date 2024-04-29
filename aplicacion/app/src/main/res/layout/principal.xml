@@ -32,12 +32,21 @@
 
         <Button
             android:id="@+id/habitacionPorLetra"
-            android:onClick="habitacionPorLetra"
+            android:onClick="habitacionPorLetraTapped"
             style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Habitacion por letra" />
+
+        <Button
+            android:id="@+id/historicoPersonas"
+            android:onClick="historicoPersonasTapped"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Historico personas" />
 
     </LinearLayout>
 

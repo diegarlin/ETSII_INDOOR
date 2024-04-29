@@ -33,4 +33,10 @@ object ApiClientRegistros {
         return response
     }
 
+    suspend fun getPersonasPorHabitacionFecha(habitacion: String, fechaInicio: String, fechaFin: String): Response<List<Habitacion>> {
+        val response = apiService.getPersonasPorHabitacionFecha(habitacion, fechaInicio, fechaFin)
+        Log.d("api", "Obtención de registros por habitación y fecha correcto")
+        return response
+    }
+
 }

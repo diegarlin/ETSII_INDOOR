@@ -4,6 +4,7 @@ import retrofit2.http.POST
 import retrofit2.http.Body
 import retrofit2.Response
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiServiceRegistros {
     @GET("/registros")
@@ -17,6 +18,13 @@ interface ApiServiceRegistros {
 
     @GET("/habitaciones/personas_por_habitacion/{letra}")
     suspend fun getPersonasPorHabitacionPorLetra(@Path("letra") letra: String): Response<List<Habitacion>>
+
+    @GET("/habitaciones/personas_por_habitacion_fecha")
+    suspend fun getPersonasPorHabitacionFecha(
+        @Query("habitacion") habitacion: String,
+        @Query("fechaInicio") fechaInicio: String,
+        @Query("fechaFin") fechaFin: String
+    ): Response<List<Habitacion>>
 
     data class Habitacion(
         val habitacion: String,

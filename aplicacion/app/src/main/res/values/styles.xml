@@ -21,7 +21,6 @@
         <item name="hintTextColor">@color/colorPrimary</item>
     </style>
 
-    <!-- Estilo personalizado para TextInputEditText -->
     <style name="CustomTextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
         <item name="android:textColor">@color/colorAccentDark</item>
         <item name="android:textSize">16sp</item>
