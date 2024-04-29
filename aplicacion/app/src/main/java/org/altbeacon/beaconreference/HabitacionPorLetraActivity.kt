@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.ProgressBar
 import ApiClientRegistros
 import android.util.Log
 import android.view.View
@@ -14,11 +15,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.altbeacon.utils.HabitacionAdapter
+
 class HabitacionPorLetraActivity : Activity() {
     private lateinit var listView: ListView
     private lateinit var letraEditText: EditText
     private lateinit var buscarButton: Button
     private lateinit var emptyTextView: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +31,17 @@ class HabitacionPorLetraActivity : Activity() {
         letraEditText = findViewById(R.id.letraEditText)
         buscarButton = findViewById(R.id.buscarButton)
         emptyTextView = findViewById(R.id.emptyTextView)
-
+        progressBar = findViewById(R.id.progressBar)
 
         buscarButton.setOnClickListener {
             val letra = letraEditText.text.toString()
+
+            if (emptyTextView.visibility == View.VISIBLE) {
+                emptyTextView.visibility = View.GONE
+            }
+
             if (letra.isNotEmpty()) {
+                progressBar.visibility = View.VISIBLE
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         val response = ApiClientRegistros.getPersonasPorHabitacionPorLetra(letra)
@@ -68,6 +77,10 @@ class HabitacionPorLetraActivity : Activity() {
                                 "Error al obtener los registros. Contacte con el administrador",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        }
+                    } finally {
+                        runOnUiThread {
+                            progressBar.visibility = View.GONE
                         }
                     }
                 }

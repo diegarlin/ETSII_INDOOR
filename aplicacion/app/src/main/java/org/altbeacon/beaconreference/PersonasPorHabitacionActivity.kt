@@ -6,16 +6,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.altbeacon.utils.HabitacionAdapter
 
 class PersonasPorHabitacionActivity : Activity() {
     private lateinit var listView: ListView
     private lateinit var emptyTextView: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +26,12 @@ class PersonasPorHabitacionActivity : Activity() {
 
         listView = findViewById(R.id.listView)
         emptyTextView = findViewById(R.id.emptyTextView)
-
+        progressBar = findViewById(R.id.progressBar)
 
         CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                progressBar.visibility = View.VISIBLE
+            }
             try {
                 val response = ApiClientRegistros.getPersonasPorHabitacion()
 
@@ -59,6 +65,10 @@ class PersonasPorHabitacionActivity : Activity() {
                         "Error al obtener los registros. Contacte con el administrador",
                         Toast.LENGTH_SHORT
                     ).show()
+                }
+            } finally {
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
                 }
             }
         }

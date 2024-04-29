@@ -26,7 +26,9 @@
         <activity android:name=".MapaActivity"/>
         <activity android:name=".MonitorizarActivity"/>
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"/>
+
         <activity android:name=".PersonasPorHabitacionActivity"/>
         <activity android:name=".HabitacionPorLetraActivity"/>
         <activity android:name=".MainActivity" android:exported="true">

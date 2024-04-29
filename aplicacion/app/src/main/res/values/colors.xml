@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#153448</color> <!-- Verde azulado -->
     <color name="colorSecondary">#3C5B6F</color> <!-- Verde azulado oscuro -->
-    <color name="colorAccent">#786F62</color> <!-- Naranja oscuro -->
-    <color name="colorAccentLight">#DFD0B8</color> <!-- Gris claro -->
+    <color name="colorAccent">#786F62</color>
+    <color name="colorAccentDark">#453F38</color>
+    <color name="colorAccentLight">#DFD0B8</color>
     <color name="white">#FFFFFF</color> <!-- Blanco -->
     <color name="red">#E64A19</color> <!-- Rojo oscuro -->
 </resources>

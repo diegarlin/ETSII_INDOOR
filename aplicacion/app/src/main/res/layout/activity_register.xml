@@ -33,6 +33,7 @@
             android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomTextInputLayout"
             android:id="@+id/usernameTextInputLayout"
             android:layout_width="match_parent"
             app:startIconDrawable="@drawable/ic_username"
@@ -40,6 +41,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usernameEditText"
+                style="@style/CustomTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -49,6 +51,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomTextInputLayout"
             android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
             app:startIconDrawable="@drawable/ic_email"
@@ -56,6 +59,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
+                style="@style/CustomTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -66,6 +70,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomTextInputLayout"
             android:id="@+id/passwordTextInputLayout"
             android:layout_width="match_parent"
             app:startIconDrawable="@drawable/ic_password"
@@ -73,6 +78,7 @@
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/CustomTextInputEditText"
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,12 +88,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/registerButton"
@@ -96,6 +96,16 @@
             android:layout_height="wrap_content"
             android:text="Registrarse" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 
