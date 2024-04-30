@@ -16,10 +16,11 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
-class LoginActivity : Activity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var usernameOrEmailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
