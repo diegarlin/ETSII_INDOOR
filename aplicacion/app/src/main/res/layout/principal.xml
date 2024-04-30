@@ -5,19 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccentLight"
     tools:context=".MainActivity">
 
     <TextView
+        style="@style/MyTitleTextStyle"
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:text="Principal"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:text="Principal" />
 
     <View
         android:layout_width="match_parent"
@@ -33,16 +30,16 @@
         <Button
             android:id="@+id/habitacionPorLetra"
             android:onClick="habitacionPorLetraTapped"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Habitacion por letra" />
+            android:text="Habitacion por letra">
+
+        </Button>
 
         <Button
             android:id="@+id/historicoPersonas"
             android:onClick="historicoPersonasTapped"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -58,7 +55,6 @@
         <Button
             android:id="@+id/closest_beacon_button"
             android:onClick="closestBeaconTapped"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -68,7 +64,6 @@
             android:id="@+id/registerButton"
             android:onClick="registerButtonTapped"
             android:text="Register"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -79,7 +74,6 @@
             android:id="@+id/habitacion"
             android:onClick="habitacionButtonTapped"
             android:text="Habitacion"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -99,7 +93,6 @@
             android:id="@+id/mapButton"
             android:onClick="mapButtonTapped"
             android:text="Map"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -109,7 +102,6 @@
             android:id="@+id/loginButton"
             android:onClick="loginButtonTapped"
             android:text="Login"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -120,7 +112,6 @@
             android:id="@+id/logoutButton"
             android:onClick="logoutButtonTapped"
             android:text="Log out"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -131,7 +122,6 @@
             android:id="@+id/monitorizingButton"
             android:onClick="monitorizeButtonTapped"
             android:text="Monitorize"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"

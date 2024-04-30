@@ -41,6 +41,7 @@ class LoginActivity : Activity() {
         loginButton.setOnClickListener {
             val usernameOrEmail = usernameOrEmailEditText.text.toString()
             val password = passwordEditText.text.toString()
+
             hideKeyboard(this@LoginActivity)
 
             if (usernameOrEmail.isBlank() || password.isBlank()) {

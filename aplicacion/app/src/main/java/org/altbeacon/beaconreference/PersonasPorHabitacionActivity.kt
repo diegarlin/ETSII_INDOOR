@@ -9,13 +9,14 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.utils.HabitacionAdapter
 
-class PersonasPorHabitacionActivity : Activity() {
+class PersonasPorHabitacionActivity : AppCompatActivity() {
     private lateinit var listView: ListView
     private lateinit var emptyTextView: TextView
     private lateinit var progressBar: ProgressBar

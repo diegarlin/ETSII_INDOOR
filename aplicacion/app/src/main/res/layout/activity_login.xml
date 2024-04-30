@@ -3,18 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorAccentLight">
+    android:orientation="vertical">
 
     <TextView
+        style="@style/MyTitleTextStyle"
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorAccent"
-        android:text="Login"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:text="Login" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,17 +19,17 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center">
+
         <TextView
+            style="@style/MyErrorTextStyle"
             android:id="@+id/errorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/red"
-            android:textSize="16sp"
             android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/CustomTextInputLayout"
+            style="@style/MyTextInputLayoutStyle"
             android:id="@+id/usernameOrEmailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +37,6 @@
             android:hint="Nombre de usuario/Email">
 
             <com.google.android.material.textfield.TextInputEditText
-                style="@style/CustomTextInputEditText"
                 android:id="@+id/usernameOrEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +47,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/CustomTextInputLayout"
+            style="@style/MyTextInputLayoutStyle"
             android:id="@+id/passwordTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +56,6 @@
             android:hint="Contraseña">
 
             <com.google.android.material.textfield.TextInputEditText
-                style="@style/CustomTextInputEditText"
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +68,6 @@
 
         <Button
             android:id="@+id/loginButton"
-            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Iniciar sesión" />
@@ -82,7 +76,6 @@
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:indeterminateTint="@color/colorPrimary"
             android:layout_margin="20dp"
             android:layout_height="wrap_content"
             android:visibility="gone"

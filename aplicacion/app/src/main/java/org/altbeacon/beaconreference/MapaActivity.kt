@@ -11,7 +11,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class MapaActivity : Activity() {
+class MapaActivity : AppCompatActivity() {
 
         @SuppressLint("SetJavaScriptEnabled")
         override fun onCreate(savedInstanceState: Bundle?) {

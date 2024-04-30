@@ -16,11 +16,11 @@ import org.altbeacon.utils.HabitacionAdapter
 import ApiClientRegistros
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import com.google.android.material.textfield.TextInputLayout
+import androidx.appcompat.app.AppCompatActivity
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
-class HistoricoPersonas : Activity() {
+class HistoricoPersonas : AppCompatActivity() {
     private lateinit var listView: ListView
     private lateinit var habitacionEditText: EditText
     private lateinit var fechaInicioTextView: TextView
@@ -114,12 +114,11 @@ class HistoricoPersonas : Activity() {
 
     private fun showJodaDateTimePicker(textView: TextView) {
         val now = DateTime()
-        val datePickerDialog = DatePickerDialog(
-            this,
+
+        val datePickerDialog = com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
             { _, year, monthOfYear, dayOfMonth ->
-                val timePickerDialog = TimePickerDialog(
-                    this,
-                    { _, hourOfDay, minute ->
+                val timePickerDialog = com.wdullaer.materialdatetimepicker.time.TimePickerDialog.newInstance(
+                    { _, hourOfDay, minute, _ ->
                         val selectedDateTime = DateTime(year, monthOfYear + 1, dayOfMonth, hourOfDay, minute)
                         textView.setText(selectedDateTime.toString("yyyy-MM-dd HH:mm"))
                     },
@@ -127,13 +126,13 @@ class HistoricoPersonas : Activity() {
                     now.minuteOfHour,
                     true
                 )
-                timePickerDialog.show()
+                timePickerDialog.show(supportFragmentManager, "TimePickerDialog")
             },
             now.year,
             now.monthOfYear - 1,
             now.dayOfMonth
         )
-        datePickerDialog.show()
+        datePickerDialog.show(supportFragmentManager, "DatePickerDialog")
     }
 
     private fun isFechaInicioBeforeFechaFin(fechaInicio: String, fechaFin: String): Boolean {

@@ -15,10 +15,11 @@ import android.widget.Button
 import android.os.PowerManager
 import android.os.Build
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var logoutButton: Button
     private lateinit var registerButton: Button

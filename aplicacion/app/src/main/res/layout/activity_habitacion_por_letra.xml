@@ -3,18 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorAccentLight">
+    android:orientation="vertical">
 
     <TextView
+        style="@style/MyTitleTextStyle"
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorAccent"
-        android:textSize="30sp"
         android:text="Personas por módulo"
-        android:textStyle="bold" />
+         />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +21,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/CustomTextInputLayout"
+            style="@style/MyTextInputLayoutStyle"
             android:id="@+id/letraTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,7 +29,6 @@
             android:hint="Introduce una letra">
 
             <com.google.android.material.textfield.TextInputEditText
-                style="@style/CustomTextInputEditText"
                 android:id="@+id/letraEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -40,10 +37,9 @@
 
         <Button
             android:id="@+id/buscarButton"
-            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+            android:layout_weight="0.30"
             android:text="Buscar" />
 
     </LinearLayout>
@@ -55,17 +51,19 @@
         android:padding="16dp">
 
         <TextView
+            style="@style/MyNormalTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Habitación"
-            android:textStyle="bold" />
+            />
 
         <TextView
+            style="@style/MyNormalTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Número de Personas"
-            android:textStyle="bold" />
+             />
 
     </LinearLayout>
 
@@ -79,7 +77,6 @@
             android:layout_height="wrap_content"
             android:text="No existen registros para ninguna habitación del módulo."
             android:gravity="center"
-            android:textColor="@color/colorAccent"
             android:visibility="gone"
             android:layout_centerInParent="true"/>
 
@@ -88,7 +85,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:indeterminateTint="@color/colorPrimary"
             android:indeterminate="true"
             android:layout_centerInParent="true"/>
 
