@@ -18,34 +18,18 @@ import androidx.appcompat.app.AppCompatActivity
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var loginButton: Button
-    private lateinit var logoutButton: Button
-    private lateinit var registerButton: Button
+class MainActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.principal)
-        loginButton = findViewById<Button>(R.id.loginButton)
-        logoutButton = findViewById<Button>(R.id.logoutButton)
-        registerButton = findViewById<Button>(R.id.registerButton)
-        val savedToken = SharedPreferencesManager.getTokenFromSharedPreferences(this@MainActivity)
-        if (!savedToken.isNullOrBlank()) {
-            loginButton.visibility = View.GONE
-            logoutButton.visibility = View.VISIBLE
-            registerButton.visibility = View.GONE
-        } else {
-            loginButton.visibility = View.VISIBLE
-            registerButton.visibility = View.VISIBLE
-            logoutButton.visibility = View.GONE
-        }
+        setupToolbar(R.id.toolbar)
+
 
         val toastMessage = intent.getStringExtra("TOAST_MESSAGE")
         if (!toastMessage.isNullOrEmpty()) {
             Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
         }
-//        if (BeaconScanPermissionsActivity.allPermissionsGranted(this, true)) {
-//            (application as ETSIINDOOR).setupForegroundService()
-//        }
 
         checkBatteryOptimizations()
 
@@ -84,55 +68,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun monitorizeButtonTapped(view: View){
-        val intent = Intent(this, MonitorizarActivity::class.java)
-        startActivity(intent)
-    }
-    fun mapButtonTapped(view: View) {
-        val intent = Intent(this, MapaActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun loginButtonTapped(view: View) {
-
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun registerButtonTapped(view: View) {
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun entradasPorLetraTapped(view: View) {
-        val intent = Intent(this, EntradasPorLetraActivity::class.java)
-        startActivity(intent)
-    }
-    fun entradasPorLetraYFechaTapped(view: View) {
-        val intent = Intent(this, EntradasPorLetraYFechaActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun personasActualPorLetraTapped(view: View) {
-        val intent = Intent(this, PersonasActualPorLetraActivity::class.java)
-        startActivity(intent)
-    }
-    fun personasActualPorLetraYFechaTapped(view: View) {
-        val intent = Intent(this, PersonasActualPorLetraYFechaActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun closestBeaconTapped(view: View) {
-        val beaconTracker = (application as ETSIINDOOR).beaconTracker
-        beaconTracker.updateRoomRecords()
-    }
-    fun logoutButtonTapped(view: View) {
-        SharedPreferencesManager.clearTokenFromSharedPreferences(this@MainActivity)
-        Toast.makeText(this@MainActivity, "Logout exitoso", Toast.LENGTH_SHORT).show()
-        loginButton.visibility = View.VISIBLE
-        logoutButton.visibility = View.GONE
-        registerButton.visibility = View.VISIBLE
-    }
 
     fun checkBatteryOptimizations() {
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager

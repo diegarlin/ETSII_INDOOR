@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".MapaActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+         />
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"

@@ -11,12 +11,13 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class MapaActivity : AppCompatActivity() {
+class MapaActivity : BaseActivity() {
 
         @SuppressLint("SetJavaScriptEnabled")
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mapa_activity)
+        setupToolbar(R.id.toolbar)
 
         val webView: WebView = findViewById(R.id.webView)
 

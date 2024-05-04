@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.altbeacon.utils.HabitacionAdapter
 
-class EntradasPorLetraActivity : AppCompatActivity() {
+class EntradasPorLetraActivity : BaseActivity() {
     private lateinit var listView: ListView
     private lateinit var letraEditText: EditText
     private lateinit var buscarButton: Button
@@ -26,6 +26,7 @@ class EntradasPorLetraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entradas_letra)
+        setupToolbar(R.id.toolbar)
 
         listView = findViewById(R.id.listView)
         letraEditText = findViewById(R.id.letraEditText)

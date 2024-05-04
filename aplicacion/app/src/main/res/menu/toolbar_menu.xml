@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Register"
+        android:id="@+id/registerMenu"
+        android:icon="@drawable/ic_register"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Login"
+        android:id="@+id/loginMenu"
+        android:icon="@drawable/ic_login"
+        app:showAsAction="ifRoom"/>
+
+    <item android:title="Monitorizar"
+        android:id="@+id/monitorizeMenu"/>
+    <item android:title="Mapa"
+        android:id="@+id/mapaMenu"/>
+    <item android:title="Entradas por habitación"
+        android:id="@+id/entradasPorLetraMenu"/>
+    <item android:title="Entradas por habitación y fecha"
+        android:id="@+id/entradasPorLetraYFechaMenu"/>
+    <item android:title="Personas por habitación"
+        android:id="@+id/personasActualPorLetraMenu"/>
+    <item android:title="Personas por habitación y fecha"
+        android:id="@+id/personasActualPorLetraYFechaMenu"/>
+    <item android:title="Beacon más cercano (no en pantalla)"
+        android:id="@+id/closestBeaconMenu"/>
+    <item android:title="Logout"
+        android:id="@+id/logoutMenu"/>
+
+</menu>

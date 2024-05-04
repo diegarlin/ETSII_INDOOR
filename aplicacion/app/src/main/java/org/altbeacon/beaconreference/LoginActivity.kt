@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     private lateinit var usernameOrEmailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setupToolbar(R.id.toolbar)
 
         usernameOrEmailEditText = findViewById(R.id.usernameOrEmailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)

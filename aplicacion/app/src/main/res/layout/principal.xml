@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 
     <TextView
         style="@style/MyTitleTextStyle"
@@ -17,133 +22,14 @@
         android:gravity="center"
         android:text="Principal" />
 
-    <View
+    <TextView
+        android:id="@+id/normalTextView"
+        style="@style/MyNormalTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/transparent" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="113dp"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:text="Para probar las funcionalidades usar las opciones del menú superior" />
 
-        <Button
-            android:id="@+id/personasActualPorLetra"
-            android:onClick="personasActualPorLetraTapped"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Personas actual por letra">
-
-        </Button>
-
-        <Button
-            android:id="@+id/personasActualPorLetraYFecha"
-            android:onClick="personasActualPorLetraYFechaTapped"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Personas actual por letra y fecha" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/entradasPorLetra"
-            android:onClick="entradasPorLetraTapped"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Entradas por letra">
-
-        </Button>
-
-        <Button
-            android:id="@+id/entradasPorLetraYFecha"
-            android:onClick="entradasPorLetraYFechaTapped"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Entradas por letra y fecha" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/closest_beacon_button"
-            android:onClick="closestBeaconTapped"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Más cercano" />
-
-        <Button
-            android:id="@+id/registerButton"
-            android:onClick="registerButtonTapped"
-            android:text="Register"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:visibility="visible"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-
-        <Button
-            android:id="@+id/mapButton"
-            android:onClick="mapButtonTapped"
-            android:text="Map"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"/> <!-- Margen a la derecha -->
-
-        <Button
-            android:id="@+id/loginButton"
-            android:onClick="loginButtonTapped"
-            android:text="Login"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:visibility="visible"/>
-
-        <Button
-            android:id="@+id/logoutButton"
-            android:onClick="logoutButtonTapped"
-            android:text="Log out"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:visibility="gone"/>
-
-        <Button
-            android:id="@+id/monitorizingButton"
-            android:onClick="monitorizeButtonTapped"
-            android:text="Monitorize"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            />
-
-    </LinearLayout>
 
 </LinearLayout>

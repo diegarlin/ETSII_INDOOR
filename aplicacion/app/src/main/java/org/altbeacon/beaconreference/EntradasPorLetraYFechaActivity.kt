@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
-class EntradasPorLetraYFechaActivity : AppCompatActivity() {
+class EntradasPorLetraYFechaActivity : BaseActivity() {
     private lateinit var listView: ListView
     private lateinit var letraEditText: EditText
     private lateinit var fechaInicioTextView: TextView
@@ -30,6 +30,7 @@ class EntradasPorLetraYFechaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entradas_letra_fecha)
+        setupToolbar(R.id.toolbar)
 
         listView = findViewById(R.id.listView)
         letraEditText = findViewById(R.id.letraEditText)
