@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Historico"
+        android:text="Entradas"
          />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/MyTextInputLayoutStyle"
-        android:id="@+id/habitacionTextInputLayout"
+        android:id="@+id/letraTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/ic_room"
-        android:hint="Habitación">
+        android:hint="Habitación/Módulo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/habitacionEditText"
+            android:id="@+id/letraEditText"
             android:layout_width="match_parent"
             android:inputType="textPersonName"
             android:layout_height="wrap_content" />
@@ -46,7 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:hint="Fecha inicio"
+            android:hint="  Fecha y hora inicial"
+            android:drawableStart="@drawable/ic_datetime"
             android:clickable="true"
             android:focusable="true" />
 
@@ -58,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:hint="Fecha fin"
+            android:hint="  Fecha y hora final"
+            android:drawableStart="@drawable/ic_datetime"
             android:clickable="true"
             android:focusable="true" />
 

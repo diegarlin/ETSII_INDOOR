@@ -1,6 +1,5 @@
 package org.altbeacon.beaconreference
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -14,65 +13,48 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.altbeacon.utils.HabitacionAdapter
 import ApiClientRegistros
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
-class HistoricoPersonas : AppCompatActivity() {
+class PersonasActualPorLetraYFechaActivity : AppCompatActivity() {
     private lateinit var listView: ListView
-    private lateinit var habitacionEditText: EditText
-    private lateinit var fechaInicioTextView: TextView
-    private lateinit var fechaFinTextView: TextView
+    private lateinit var letraEditText: EditText
+    private lateinit var fechaTextView: TextView
     private lateinit var buscarButton: Button
     private lateinit var emptyTextView: TextView
     private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_historico_personas)
+        setContentView(R.layout.activity_personas_actual_letra_fecha)
 
         listView = findViewById(R.id.listView)
-        habitacionEditText = findViewById(R.id.habitacionEditText)
-        fechaInicioTextView = findViewById(R.id.fechaInicioTextView)
-        fechaFinTextView = findViewById(R.id.fechaFinTextView)
+        letraEditText = findViewById(R.id.letraEditText)
+        fechaTextView = findViewById(R.id.fechaTextView)
         buscarButton = findViewById(R.id.buscarButton)
         emptyTextView = findViewById(R.id.emptyTextView)
         progressBar = findViewById(R.id.progressBar)
 
-        fechaInicioTextView.setOnClickListener {
-            showJodaDateTimePicker(fechaInicioTextView)
+        fechaTextView.setOnClickListener {
+            showJodaDateTimePicker(fechaTextView)
         }
 
-        fechaFinTextView.setOnClickListener {
-            showJodaDateTimePicker(fechaFinTextView)
-        }
 
         buscarButton.setOnClickListener {
-            val habitacion = habitacionEditText.text.toString()
-            val fechaInicio = fechaInicioTextView.text.toString()
-            val fechaFin = fechaFinTextView.text.toString()
+            val letra = letraEditText.text.toString()
+            val fecha = fechaTextView.text.toString()
 
             if (emptyTextView.visibility == View.VISIBLE) {
                 emptyTextView.visibility = View.GONE
             }
 
-            if (fechaInicio.isNotEmpty() && fechaFin.isNotEmpty()) {
-                if (!isFechaInicioBeforeFechaFin(fechaInicio, fechaFin)) {
-                    Toast.makeText(this, "La fecha de inicio debe ser anterior a la fecha de fin", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                if (!isFechaNotInFuture(fechaInicio) || !isFechaNotInFuture(fechaFin)) {
-                    Toast.makeText(this, "Las fechas no pueden ser posteriores a la fecha y hora actual", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
+            if (fecha.isNotEmpty()) {
 
                 progressBar.visibility = View.VISIBLE
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val response = ApiClientRegistros.getPersonasPorHabitacionFecha(habitacion, fechaInicio, fechaFin)
+                        val response = ApiClientRegistros.getPersonasActualPorLetraYFecha(letra, fecha)
 
                         if (response.isSuccessful && response.body() != null) {
                             val habitaciones = response.body()!!
@@ -84,18 +66,22 @@ class HistoricoPersonas : AppCompatActivity() {
                                 } else {
                                     listView.visibility = View.VISIBLE
                                     emptyTextView.visibility = View.GONE
-                                    listView.adapter = HabitacionAdapter(this@HistoricoPersonas, habitaciones)
+                                    listView.adapter = HabitacionAdapter(this@PersonasActualPorLetraYFechaActivity, habitaciones)
                                 }
                             }
                         } else {
                             runOnUiThread {
-                                Toast.makeText(this@HistoricoPersonas, "Error al obtener los registros", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@PersonasActualPorLetraYFechaActivity, "Error al obtener los registros", Toast.LENGTH_SHORT).show()
                             }
+                        }
+                    }catch (e: java.net.SocketTimeoutException) {
+                        runOnUiThread {
+                            Toast.makeText(this@PersonasActualPorLetraYFechaActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
                         runOnUiThread {
                             Toast.makeText(
-                                this@HistoricoPersonas,
+                                this@PersonasActualPorLetraYFechaActivity,
                                 "Error al obtener los registros. Contacte con el administrador",
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -107,7 +93,7 @@ class HistoricoPersonas : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Por favor, introduce las fechas de inicio y fin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, introduce la fecha", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -135,19 +121,4 @@ class HistoricoPersonas : AppCompatActivity() {
         datePickerDialog.show(supportFragmentManager, "DatePickerDialog")
     }
 
-    private fun isFechaInicioBeforeFechaFin(fechaInicio: String, fechaFin: String): Boolean {
-        val format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm")
-        val fechaInicioDateTime = format.parseDateTime(fechaInicio)
-        val fechaFinDateTime = format.parseDateTime(fechaFin)
-
-        return fechaInicioDateTime.isBefore(fechaFinDateTime)
-    }
-
-    private fun isFechaNotInFuture(fecha: String): Boolean {
-        val format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm")
-        val fechaDateTime = format.parseDateTime(fecha)
-        val now = DateTime()
-
-        return !fechaDateTime.isAfter(now)
-    }
 }

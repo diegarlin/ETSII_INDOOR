@@ -2,7 +2,6 @@ package org.altbeacon.beaconreference
 
 import SharedPreferencesManager
 import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -105,17 +104,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun habitacionButtonTapped(view: View) {
-        val intent = Intent(this, PersonasPorHabitacionActivity::class.java)
+    fun entradasPorLetraTapped(view: View) {
+        val intent = Intent(this, EntradasPorLetraActivity::class.java)
+        startActivity(intent)
+    }
+    fun entradasPorLetraYFechaTapped(view: View) {
+        val intent = Intent(this, EntradasPorLetraYFechaActivity::class.java)
         startActivity(intent)
     }
 
-    fun habitacionPorLetraTapped(view: View) {
-        val intent = Intent(this, HabitacionPorLetraActivity::class.java)
+    fun personasActualPorLetraTapped(view: View) {
+        val intent = Intent(this, PersonasActualPorLetraActivity::class.java)
         startActivity(intent)
     }
-    fun historicoPersonasTapped(view: View) {
-        val intent = Intent(this, HistoricoPersonas::class.java)
+    fun personasActualPorLetraYFechaTapped(view: View) {
+        val intent = Intent(this, PersonasActualPorLetraYFechaActivity::class.java)
         startActivity(intent)
     }
 

@@ -21,22 +21,28 @@ object ApiClientRegistros {
         return response
     }
 
-    suspend fun getPersonasPorHabitacion(): Response<List<Habitacion>> {
-        val response = apiService.getPersonasPorHabitacion()
-        Log.d("api", "Obtención de registros correcto")
+
+    suspend fun getEntradasPorLetra(letra: String): Response<List<Habitacion>> {
+        val response = apiService.getEntradasPorLetra(letra)
+        Log.d("api", "Obtención de entradas por letra correcto")
         return response
     }
 
-    suspend fun getPersonasPorHabitacionPorLetra(letra: String): Response<List<Habitacion>> {
-        val response = apiService.getPersonasPorHabitacionPorLetra(letra)
-        Log.d("api", "Obtención de registros por letra correcto")
+    suspend fun getEntradasPorLetraYFecha(letra: String, fechaInicio: String, fechaFin: String): Response<List<Habitacion>> {
+        val response = apiService.getEntradasPorLetraYFecha(letra, fechaInicio, fechaFin)
+        Log.d("api", "Obtención de entradas por habitación y fecha correcto")
         return response
     }
 
-    suspend fun getPersonasPorHabitacionFecha(habitacion: String, fechaInicio: String, fechaFin: String): Response<List<Habitacion>> {
-        val response = apiService.getPersonasPorHabitacionFecha(habitacion, fechaInicio, fechaFin)
-        Log.d("api", "Obtención de registros por habitación y fecha correcto")
+    suspend fun getPersonasActualPorLetra(letra: String): Response<List<Habitacion>> {
+        val response = apiService.getPersonasActualPorLetra(letra)
+        Log.d("api", "Obtención de personas actual por letra correcto")
         return response
     }
 
+    suspend fun getPersonasActualPorLetraYFecha(letra: String, fecha: String): Response<List<Habitacion>> {
+        val response = apiService.getPersonasActualPorLetraYFecha(letra, fecha)
+        Log.d("api", "Obtención de entradas por habitación y fecha correcto")
+        return response
+    }
 }

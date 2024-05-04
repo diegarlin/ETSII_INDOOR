@@ -29,22 +29,47 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/habitacionPorLetra"
-            android:onClick="habitacionPorLetraTapped"
+            android:id="@+id/personasActualPorLetra"
+            android:onClick="personasActualPorLetraTapped"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Habitacion por letra">
+            android:text="Personas actual por letra">
 
         </Button>
 
         <Button
-            android:id="@+id/historicoPersonas"
-            android:onClick="historicoPersonasTapped"
+            android:id="@+id/personasActualPorLetraYFecha"
+            android:onClick="personasActualPorLetraYFechaTapped"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Historico personas" />
+            android:text="Personas actual por letra y fecha" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/entradasPorLetra"
+            android:onClick="entradasPorLetraTapped"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Entradas por letra">
+
+        </Button>
+
+        <Button
+            android:id="@+id/entradasPorLetraYFecha"
+            android:onClick="entradasPorLetraYFechaTapped"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Entradas por letra y fecha" />
 
     </LinearLayout>
 
@@ -65,16 +90,6 @@
             android:id="@+id/registerButton"
             android:onClick="registerButtonTapped"
             android:text="Register"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:visibility="visible"/>
-
-        <Button
-            android:id="@+id/habitacion"
-            android:onClick="habitacionButtonTapped"
-            android:text="Habitacion"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"

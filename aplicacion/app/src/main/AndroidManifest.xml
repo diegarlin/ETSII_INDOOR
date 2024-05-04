@@ -25,9 +25,10 @@
         <activity android:name=".MonitorizarActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
-        <activity android:name=".PersonasPorHabitacionActivity"/>
-        <activity android:name=".HabitacionPorLetraActivity"/>
-        <activity android:name=".HistoricoPersonas"/>
+        <activity android:name=".EntradasPorLetraActivity"/>
+        <activity android:name=".EntradasPorLetraYFechaActivity"/>
+        <activity android:name=".PersonasActualPorLetraActivity"/>
+        <activity android:name=".PersonasActualPorLetraYFechaActivity"/>
         <activity android:name=".MainActivity" android:exported="true">
 
             <intent-filter>

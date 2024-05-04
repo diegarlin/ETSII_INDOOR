@@ -12,38 +12,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Personas por módulo"
+        android:text="Personas actual"
          />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/MyTextInputLayoutStyle"
+        android:id="@+id/letraTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_room"
+        android:hint="Habitación/Módulo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/letraEditText"
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/MyTextInputLayoutStyle"
-            android:id="@+id/letraTextInputLayout"
+        <TextView
+            style="@style/MyNormalTextStyle"
+            android:background="@drawable/text_view_border"
+            android:id="@+id/fechaTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.75"
-            android:hint="Introduce una letra">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/letraEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/buscarButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"
-            android:text="Buscar" />
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:hint="  Fecha y hora"
+            android:drawableStart="@drawable/ic_datetime"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buscarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Buscar" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,15 +72,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Habitación"
-            />
+            android:text="Habitación" />
 
         <TextView
             style="@style/MyNormalTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Número de Personas"
-             />
+            android:text="Número de Personas" />
 
     </LinearLayout>
 
@@ -87,14 +101,13 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:indeterminate="true"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
 
