@@ -21,14 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAppTheme">
 
-        <activity android:name=".MapaActivity"/>
-        <activity android:name=".MonitorizarActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".EntradasPorLetraActivity"/>
-        <activity android:name=".EntradasPorLetraYFechaActivity"/>
-        <activity android:name=".PersonasActualPorLetraActivity"/>
-        <activity android:name=".PersonasActualPorLetraYFechaActivity"/>
+        <activity android:name=".MapaActivity" android:exported="false"/>
+        <activity android:name=".MonitorizarActivity" android:exported="false"/>
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".RegisterActivity" android:exported="false"/>
+        <activity android:name=".EntradasPorLetraActivity" android:exported="false"/>
+        <activity android:name=".EntradasPorLetraYFechaActivity" android:exported="false"/>
+        <activity android:name=".PersonasActualPorLetraActivity" android:exported="false"/>
+        <activity android:name=".PersonasActualPorLetraYFechaActivity" android:exported="false"/>
         <activity android:name=".MainActivity" android:exported="true">
 
             <intent-filter>
