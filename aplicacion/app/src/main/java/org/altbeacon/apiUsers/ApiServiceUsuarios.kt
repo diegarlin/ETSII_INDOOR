@@ -16,8 +16,14 @@ interface ApiServiceUsuarios {
     suspend fun register(@Body request: RegisterRequest): Response<JsonObject>
 
     @GET("/cerrar_entradas")
-    suspend fun cerrar_entradas(@Header("Authorization") token: String): Response<JsonObject>}
+    suspend fun cerrar_entradas(@Header("Authorization") token: String): Response<JsonObject>
 
+    @Headers("Content-Type: application/json")
+    @POST("/send_email")
+    suspend fun send_email(@Header("Authorization") token: String, @Body request: EmailRequest): Response<JsonObject>
+
+
+    }
 data class LoginRequest(
     val usernameOrEmail: String,
     val password: String,
@@ -25,3 +31,4 @@ data class LoginRequest(
 )
 
 data class RegisterRequest(val username: String, val email: String, val password: String, val deviceID: String)
+data class EmailRequest(val subject: String, val body: String)

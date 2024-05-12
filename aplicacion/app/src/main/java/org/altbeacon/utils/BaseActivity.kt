@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
+import org.altbeacon.beaconreference.MandarAvisoActivity
 
 open class BaseActivity: AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -43,6 +44,7 @@ open class BaseActivity: AppCompatActivity() {
         menu?.findItem(R.id.registerMenu)?.isVisible = !tokenExists
         menu?.findItem(R.id.logoutMenu)?.isVisible = tokenExists
         menu?.findItem(R.id.cerrarEntradas)?.isVisible = esAdmin
+        menu?.findItem(R.id.mandarAviso)?.isVisible = esAdmin
         return true
     }
 
@@ -122,6 +124,11 @@ open class BaseActivity: AppCompatActivity() {
                 } else {
                     Toast.makeText(this@BaseActivity, "No se encontró el token. Logueate de nuevo o por primera vez", Toast.LENGTH_LONG).show()
                 }
+                true
+            }
+            R.id.mandarAviso -> {
+                val intent = Intent(this, MandarAvisoActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

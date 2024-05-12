@@ -29,6 +29,10 @@
         android:id="@+id/closestBeaconMenu"/>
     <item android:title="Cerrar entradas"
         android:id="@+id/cerrarEntradas"/>
+    <item android:title="Mandar Aviso"
+        android:id="@+id/mandarAviso"
+        android:icon="@drawable/ic_message"
+        app:showAsAction="ifRoom"/>
     <item android:title="Logout"
         android:id="@+id/logoutMenu"/>
 </menu>
