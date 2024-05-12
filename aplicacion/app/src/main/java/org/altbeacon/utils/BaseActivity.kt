@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
+import org.altbeacon.beaconreference.MainActivity
 import org.altbeacon.beaconreference.MandarAvisoActivity
 import org.altbeacon.beaconreference.UsersActivity
 
@@ -101,7 +102,10 @@ open class BaseActivity: AppCompatActivity() {
                 SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@BaseActivity)
                 Toast.makeText(this@BaseActivity, "Logout exitoso", Toast.LENGTH_SHORT).show()
                 invalidateOptionsMenu()
+                val intent = Intent(this@BaseActivity, MainActivity::class.java)
+                startActivity(intent)
                 true
+
             }
             R.id.cerrarEntradas -> {
                 val token = SharedPreferencesManager.getTokenFromSharedPreferences(this)

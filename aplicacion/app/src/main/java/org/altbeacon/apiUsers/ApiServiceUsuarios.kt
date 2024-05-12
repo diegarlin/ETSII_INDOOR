@@ -40,9 +40,17 @@ data class LoginRequest(
     val deviceID: String
 )
 
-data class RegisterRequest(val username: String, val email: String, val password: String, val deviceID: String)
-data class EmailRequest(val subject: String, val body: String)
-data class UpdateUserRequest(val admin: Boolean, val profesor: Boolean, val despacho: String)
+data class RegisterRequest(val username: String,
+                           val email: String,
+                           val password: String,
+                           val deviceID: String)
+data class EmailRequest(val subject: String,
+                        val body: String)
+data class UpdateUserRequest(val username: String,
+                             val email: String,
+                             val admin: Boolean,
+                             val profesor: Boolean,
+                             val despacho: String)
 
 data class User(
     val id: Int,

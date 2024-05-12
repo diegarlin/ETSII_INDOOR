@@ -31,6 +31,7 @@
         <activity android:name=".PersonasActualPorLetraYFechaActivity" android:exported="false"/>
         <activity android:name=".MandarAvisoActivity" android:exported="false"/>
         <activity android:name=".UsersActivity" android:exported="false"/>
+        <activity android:name=".EditUserActivity" android:exported="false"/>
         <activity android:name=".MainActivity" android:exported="true">
 
             <intent-filter>

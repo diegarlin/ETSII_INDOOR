@@ -1,5 +1,6 @@
 package org.altbeacon.beaconreference
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -86,8 +87,10 @@ class UsersActivity : BaseActivity() {
                         // Get the User at the clicked position
                         val user = usersAdapter.getItem(position) as User
                         // Show a Toast with the User's username
-                        Toast.makeText(this@UsersActivity, "Clicked on user: ${user.id}", Toast.LENGTH_SHORT).show()
-                    }
+                        val intent = Intent(this@UsersActivity, EditUserActivity::class.java).apply {
+                            putExtra("USER_ID", user.id)
+                        }
+                        startActivity(intent)                    }
                 }
             }
         }
