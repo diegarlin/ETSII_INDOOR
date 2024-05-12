@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.beaconreference.MandarAvisoActivity
+import org.altbeacon.beaconreference.UsersActivity
 
 open class BaseActivity: AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -45,6 +46,7 @@ open class BaseActivity: AppCompatActivity() {
         menu?.findItem(R.id.logoutMenu)?.isVisible = tokenExists
         menu?.findItem(R.id.cerrarEntradas)?.isVisible = esAdmin
         menu?.findItem(R.id.mandarAviso)?.isVisible = esAdmin
+        menu?.findItem(R.id.listaUsuarios)?.isVisible = esAdmin
         return true
     }
 
@@ -128,6 +130,11 @@ open class BaseActivity: AppCompatActivity() {
             }
             R.id.mandarAviso -> {
                 val intent = Intent(this, MandarAvisoActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.listaUsuarios ->{
+                val intent = Intent(this, UsersActivity::class.java)
                 startActivity(intent)
                 true
             }

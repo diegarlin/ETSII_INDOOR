@@ -51,5 +51,29 @@ object ApiClientUsuarios {
         return response
     }
 
+    suspend fun getUsers(context: Context): Response<List<User>> {
+        val response = apiService.getUsers()
+        Log.d("api", response.toString())
+        return response
+    }
+
+    suspend fun getUser(context: Context, userId: Int): Response<User> {
+        val token = SharedPreferencesManager.getTokenFromSharedPreferences(context)
+        if (token != null) {
+            return apiService.getUser("Bearer $token",userId)
+        } else {
+            throw Exception("No se encontró el token. Logueate de nuevo o por primera vez")
+        }
+    }
+
+    suspend fun updateUser(context: Context, userId: Int, request: UpdateUserRequest): Response<User> {
+        val token = SharedPreferencesManager.getTokenFromSharedPreferences(context)
+        if (token != null) {
+            return apiService.updateUser("Bearer $token", userId, request)
+        } else {
+            throw Exception("No se encontró el token. Logueate de nuevo o por primera vez")
+        }
+    }
+
 }
 

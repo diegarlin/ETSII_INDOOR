@@ -29,6 +29,8 @@
         android:id="@+id/closestBeaconMenu"/>
     <item android:title="Cerrar entradas"
         android:id="@+id/cerrarEntradas"/>
+    <item android:title="Lista Usuarios"
+        android:id="@+id/listaUsuarios"/>
     <item android:title="Mandar Aviso"
         android:id="@+id/mandarAviso"
         android:icon="@drawable/ic_message"
