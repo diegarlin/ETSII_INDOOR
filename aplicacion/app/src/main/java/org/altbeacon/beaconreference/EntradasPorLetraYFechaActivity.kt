@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import org.altbeacon.utils.HabitacionAdapter
 import ApiClientRegistros
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import org.altbeacon.utils.BaseActivity
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 

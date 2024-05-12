@@ -7,7 +7,6 @@
         android:id="@+id/registerMenu"
         android:icon="@drawable/ic_register"
         app:showAsAction="ifRoom"/>
-
     <item
         android:title="Login"
         android:id="@+id/loginMenu"
@@ -28,7 +27,8 @@
         android:id="@+id/personasActualPorLetraYFechaMenu"/>
     <item android:title="Beacon más cercano (no en pantalla)"
         android:id="@+id/closestBeaconMenu"/>
+    <item android:title="Cerrar entradas"
+        android:id="@+id/cerrarEntradas"/>
     <item android:title="Logout"
         android:id="@+id/logoutMenu"/>
-
 </menu>

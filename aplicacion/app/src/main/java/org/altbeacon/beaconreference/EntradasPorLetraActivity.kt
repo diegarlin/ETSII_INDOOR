@@ -10,10 +10,10 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.altbeacon.utils.BaseActivity
 import org.altbeacon.utils.HabitacionAdapter
 
 class EntradasPorLetraActivity : BaseActivity() {

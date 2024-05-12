@@ -1,6 +1,5 @@
 package org.altbeacon.beaconreference
 
-import SharedPreferencesManager
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
@@ -9,13 +8,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.os.PowerManager
 import android.os.Build
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
+import org.altbeacon.utils.BaseActivity
 
 
 class MainActivity : BaseActivity() {

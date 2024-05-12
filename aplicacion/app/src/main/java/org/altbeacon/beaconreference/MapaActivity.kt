@@ -1,15 +1,13 @@
 package org.altbeacon.beaconreference
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import org.altbeacon.utils.BaseActivity
 
 class MapaActivity : BaseActivity() {
 

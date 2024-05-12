@@ -16,9 +16,9 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
+import org.altbeacon.utils.BaseActivity
 
 class RegisterActivity : BaseActivity() {
     private lateinit var usernameEditText: EditText

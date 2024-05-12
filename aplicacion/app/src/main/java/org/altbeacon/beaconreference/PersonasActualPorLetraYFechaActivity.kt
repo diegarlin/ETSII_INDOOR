@@ -13,9 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.altbeacon.utils.HabitacionAdapter
 import ApiClientRegistros
-import androidx.appcompat.app.AppCompatActivity
+import org.altbeacon.utils.BaseActivity
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 
 class PersonasActualPorLetraYFechaActivity : BaseActivity() {
     private lateinit var listView: ListView

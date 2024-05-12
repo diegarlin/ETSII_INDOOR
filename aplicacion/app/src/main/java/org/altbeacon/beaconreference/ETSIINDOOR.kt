@@ -1,7 +1,7 @@
 package org.altbeacon.beaconreference
 
 import BeaconTracker
-import SharedPreferencesManager
+import org.altbeacon.utils.SharedPreferencesManager
 import android.app.Application
 import android.app.Notification
 import android.app.NotificationChannel

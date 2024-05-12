@@ -16,9 +16,10 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonParser
 import kotlinx.coroutines.withContext
+import org.altbeacon.utils.BaseActivity
+import org.altbeacon.utils.SharedPreferencesManager
 
 class LoginActivity : BaseActivity() {
     private lateinit var usernameOrEmailEditText: EditText
@@ -79,9 +80,10 @@ class LoginActivity : BaseActivity() {
 
                     // Verifica si la respuesta contiene un token
                     val token = responseBody?.get("access_token")?.asString
+                    val admin = responseBody?.get("admin")?.asBoolean
 
-                    if (!token.isNullOrBlank()) {
-                        SharedPreferencesManager.saveTokenToSharedPreferences(this@LoginActivity, token)
+                    if (!token.isNullOrBlank() && admin != null) {
+                        SharedPreferencesManager.saveTokenAndAdminToSharedPreferences(this@LoginActivity, token, admin)
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.putExtra("TOAST_MESSAGE", "Inicio de sesión exitoso")
                         startActivity(intent)
