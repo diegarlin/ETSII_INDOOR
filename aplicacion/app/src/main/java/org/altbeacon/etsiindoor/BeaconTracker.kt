@@ -6,9 +6,7 @@ import org.altbeacon.beacon.Beacon
 import java.util.concurrent.ConcurrentHashMap
 import android.os.Handler
 import android.os.Looper
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import org.altbeacon.beaconreference.ETSIINDOOR
+import org.altbeacon.etsiindoor.ETSIINDOOR
 import java.util.Calendar
 
 class BeaconTracker(private val etsiindoor: ETSIINDOOR){

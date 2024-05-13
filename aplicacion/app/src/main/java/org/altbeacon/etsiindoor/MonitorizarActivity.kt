@@ -1,4 +1,4 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import android.app.AlertDialog
 import android.os.Bundle

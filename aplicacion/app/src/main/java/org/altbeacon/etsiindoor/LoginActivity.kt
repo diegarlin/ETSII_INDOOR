@@ -1,4 +1,4 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import android.app.Activity
 import android.content.Intent

@@ -1,4 +1,4 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +15,6 @@ import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.apiUsers.User
 import org.altbeacon.utils.BaseActivity
-import org.altbeacon.utils.HabitacionAdapter
 
 class UsersActivity : BaseActivity() {
     private lateinit var usersListView: ListView

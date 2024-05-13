@@ -1,7 +1,6 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.textfield.TextInputEditText

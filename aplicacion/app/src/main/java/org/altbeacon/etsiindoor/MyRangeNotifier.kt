@@ -1,9 +1,8 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import android.content.Context
 import android.util.Log
 import org.altbeacon.beacon.Beacon
-import org.altbeacon.beacon.MonitorNotifier
 import org.altbeacon.beacon.RangeNotifier
 import org.altbeacon.beacon.Region
 

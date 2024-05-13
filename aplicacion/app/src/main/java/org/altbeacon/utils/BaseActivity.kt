@@ -7,24 +7,24 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import org.altbeacon.beaconreference.ETSIINDOOR
-import org.altbeacon.beaconreference.EntradasPorLetraActivity
-import org.altbeacon.beaconreference.EntradasPorLetraYFechaActivity
-import org.altbeacon.beaconreference.LoginActivity
-import org.altbeacon.beaconreference.MapaActivity
-import org.altbeacon.beaconreference.MonitorizarActivity
-import org.altbeacon.beaconreference.PersonasActualPorLetraActivity
-import org.altbeacon.beaconreference.PersonasActualPorLetraYFechaActivity
-import org.altbeacon.beaconreference.R
-import org.altbeacon.beaconreference.RegisterActivity
+import org.altbeacon.etsiindoor.ETSIINDOOR
+import org.altbeacon.etsiindoor.EntradasPorLetraActivity
+import org.altbeacon.etsiindoor.EntradasPorLetraYFechaActivity
+import org.altbeacon.etsiindoor.LoginActivity
+import org.altbeacon.etsiindoor.MapaActivity
+import org.altbeacon.etsiindoor.MonitorizarActivity
+import org.altbeacon.etsiindoor.PersonasActualPorLetraActivity
+import org.altbeacon.etsiindoor.PersonasActualPorLetraYFechaActivity
+import org.altbeacon.etsiindoor.R
+import org.altbeacon.etsiindoor.RegisterActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
-import org.altbeacon.beaconreference.MainActivity
-import org.altbeacon.beaconreference.MandarAvisoActivity
-import org.altbeacon.beaconreference.UsersActivity
+import org.altbeacon.etsiindoor.MainActivity
+import org.altbeacon.etsiindoor.MandarAvisoActivity
+import org.altbeacon.etsiindoor.UsersActivity
 
 open class BaseActivity: AppCompatActivity() {
     private lateinit var toolbar: Toolbar

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import org.altbeacon.beaconreference.R
+import org.altbeacon.etsiindoor.R
 
 class HabitacionAdapter(private val context: Context, private val dataSource: List<Habitacion>) : BaseAdapter() {
 

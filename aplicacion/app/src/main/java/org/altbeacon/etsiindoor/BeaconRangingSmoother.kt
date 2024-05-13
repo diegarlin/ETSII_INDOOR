@@ -1,4 +1,4 @@
-package org.altbeacon.beaconreference
+package org.altbeacon.etsiindoor
 
 import org.altbeacon.beacon.Beacon
 import java.util.ArrayList
