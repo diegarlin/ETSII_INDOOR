@@ -54,7 +54,7 @@ class ETSIINDOOR: Application() {
 
         //Empiezo a rangear y empiezo la actividad de actualizar el beacon más cercano cada minuto
         setupBeaconScanning()
-        beaconTracker = BeaconTracker()
+        beaconTracker = BeaconTracker(this)
         beaconTracker.startUpdatingRoomRecords()
 
         //Dejo de monitorear todas las regiones que había anteriormente y comienzo a monitorear todas las definidas por si acaso
@@ -147,11 +147,11 @@ class ETSIINDOOR: Application() {
         }
     }
 
-    private fun sendNotification() {
-        val builder = NotificationCompat.Builder(this, "beacon-ref-notification-id")
-            .setContentTitle("Beacon Reference Application")
-            .setContentText("A beacon is nearby.")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+    fun sendNotification(textoNotificacion: String) {
+        val builder = NotificationCompat.Builder(this, "etsii-indoor-notification-id")
+            .setContentTitle("ALERTA")
+            .setContentText(textoNotificacion)
+            .setSmallIcon(R.drawable.ic_alert)
         val stackBuilder = TaskStackBuilder.create(this)
         stackBuilder.addNextIntent(Intent(this, MainActivity::class.java))
         val resultPendingIntent = stackBuilder.getPendingIntent(

@@ -6,9 +6,12 @@ import org.altbeacon.beacon.Beacon
 import java.util.concurrent.ConcurrentHashMap
 import android.os.Handler
 import android.os.Looper
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import org.altbeacon.beaconreference.ETSIINDOOR
+import java.util.Calendar
 
-class BeaconTracker{
+class BeaconTracker(private val etsiindoor: ETSIINDOOR){
     private val beaconRecords = ConcurrentHashMap<String, MutableList<Double>>()
     private val handler = Handler(Looper.getMainLooper())
     private var closestBeacon = "";
@@ -61,6 +64,7 @@ class BeaconTracker{
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 var newclosestBeacon = getClosestBeacon()
+
                 val deviceID = ETSIINDOOR.deviceID
                 if (newclosestBeacon != closestBeacon) {
                     if(newclosestBeacon.equals("")){
@@ -89,6 +93,10 @@ class BeaconTracker{
                         val response = ApiClientRegistros.createRegistro(registroEntrada)
                         if (response.isSuccessful) {
                             Log.d("BeaconTracker", "Registro de entrada creado exitosamente")
+                            if (needsSpecialPermission()) {
+                                etsiindoor.sendNotification("Necesita permiso especial para entrar en la facultad")
+                                Log.d("BeaconTracker", "Necesita permiso especial para entrar en la facultad")
+                            }
                         } else {
                             Log.d("BeaconTracker", "Error al crear registro de entrada")
                         }
@@ -105,4 +113,29 @@ class BeaconTracker{
             }
         }
     }
+
+    fun needsSpecialPermission(): Boolean {
+        val now = Calendar.getInstance()
+        val hour = now.get(Calendar.HOUR_OF_DAY)
+        val dayOfWeek = now.get(Calendar.DAY_OF_WEEK)
+        val month = now.get(Calendar.MONTH)
+
+        // Comprueba si es entre las 23 y las 8
+        if (hour < 8 || hour >= 23) {
+            return true
+        }
+
+        // Comprueba si es fin de semana
+        if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) {
+            return true
+        }
+
+        // Comprueba si es agosto (en Calendar, los meses empiezan desde 0, por lo que agosto es 7)
+        if (month == Calendar.AUGUST) {
+            return true
+        }
+
+        return false
+    }
+
 }
