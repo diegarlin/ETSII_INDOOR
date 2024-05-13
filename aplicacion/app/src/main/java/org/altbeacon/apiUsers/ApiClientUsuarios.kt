@@ -19,10 +19,9 @@ object ApiClientUsuarios {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val apiService: ApiServiceUsuarios = retrofit.create(ApiServiceUsuarios::class.java)
+    private val apiService: ApiServiceUsuarios = retrofit.create(ApiServiceUsuarios::class.java)
 
     suspend fun login(
-        context: Context,
         usernameOrEmail: String,
         password: String,
         deviceID: String
@@ -33,7 +32,6 @@ object ApiClientUsuarios {
     }
 
     suspend fun register(
-        context: Context,
         username: String,
         email: String,
         password: String,
@@ -44,7 +42,7 @@ object ApiClientUsuarios {
         return response
     }
 
-    suspend fun cerrar_entradas(context: Context, token: String): Response<JsonObject> {
+    suspend fun cerrarEntradas(token: String): Response<JsonObject> {
 
         val response = apiService.cerrar_entradas("Bearer $token")
         Log.d("api", "Registro de salidas realizado con éxito")
@@ -53,8 +51,7 @@ object ApiClientUsuarios {
         return response
     }
 
-    suspend fun send_email(
-        context: Context,
+    suspend fun sendEmail(
         subject: String,
         body: String,
         token: String

@@ -78,7 +78,4 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="MyDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dark">
-
-    </style>
 </resources>

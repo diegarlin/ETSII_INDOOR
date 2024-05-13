@@ -77,7 +77,6 @@ class RegisterActivity : BaseActivity() {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = ETSIINDOOR.deviceID
                 val response = ApiClientUsuarios.register(
-                    this@RegisterActivity,
                     username,
                     email,
                     password,

@@ -76,7 +76,7 @@ class LoginActivity : BaseActivity() {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = ETSIINDOOR.deviceID
                 val response =
-                    ApiClientUsuarios.login(this@LoginActivity, usernameOrEmail, password, deviceID)
+                    ApiClientUsuarios.login(usernameOrEmail, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {

@@ -56,7 +56,7 @@ class MandarAvisoActivity : BaseActivity() {
                 }
                 try {
                     val response =
-                        ApiClientUsuarios.send_email(this@MandarAvisoActivity, subject, body, token)
+                        ApiClientUsuarios.sendEmail(subject, body, token)
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             Toast.makeText(

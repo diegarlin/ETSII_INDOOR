@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -60,10 +59,10 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/text_view_border"
         android:clickable="true"
-        android:drawableStart="@drawable/ic_datetime"
         android:focusable="true"
-        android:hint="  Fecha y hora inicial"
+        android:hint="  Fecha inicial"
         android:padding="10dp"
+        app:drawableStartCompat="@drawable/ic_datetime"
         app:layout_constraintBottom_toTopOf="@+id/buscarButton"
         app:layout_constraintEnd_toStartOf="@+id/fechaFinTextView"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,10 +77,10 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/text_view_border"
         android:clickable="true"
-        android:drawableStart="@drawable/ic_datetime"
         android:focusable="true"
-        android:hint="  Fecha y hora final"
+        android:hint="  Fecha final"
         android:padding="10dp"
+        app:drawableStartCompat="@drawable/ic_datetime"
         app:layout_constraintBaseline_toBaselineOf="@+id/fechaInicioTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fechaInicioTextView" />

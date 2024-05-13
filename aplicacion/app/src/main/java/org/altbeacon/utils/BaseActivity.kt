@@ -119,8 +119,7 @@ open class BaseActivity : AppCompatActivity() {
                 if (token != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            val response = ApiClientUsuarios.cerrar_entradas(
-                                this@BaseActivity,
+                            val response = ApiClientUsuarios.cerrarEntradas(
                                 token.toString()
                             )
                             withContext(Dispatchers.Main) {

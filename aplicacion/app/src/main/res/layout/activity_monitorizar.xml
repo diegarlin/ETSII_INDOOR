@@ -18,7 +18,7 @@
         android:id="@+id/beaconList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></ListView>
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="rangingButtonTapped"
-            android:text="Disable Ranging"></Button>
+            android:text="Disable Ranging"/>
 
         <Button
             android:id="@+id/monitoringButton"
@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="monitoringButtonTapped"
-            android:text="Disable Monitoring"></Button>
+            android:text="Disable Monitoring"/>
 
     </LinearLayout>
 
