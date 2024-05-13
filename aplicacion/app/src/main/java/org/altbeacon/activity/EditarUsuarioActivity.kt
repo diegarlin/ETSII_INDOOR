@@ -21,7 +21,7 @@ import org.altbeacon.etsiindoor.R
 import org.altbeacon.utils.BaseActivity
 import org.altbeacon.utils.SharedPreferencesManager
 
-class EditUserActivity : BaseActivity() {
+class EditarUsuarioActivity : BaseActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var usernameEditText: TextInputEditText
     private lateinit var emailEditText: TextInputEditText
@@ -32,7 +32,7 @@ class EditUserActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_user)
+        setContentView(R.layout.activity_editar_usuario)
         setupToolbar(R.id.toolbar)
 
         progressBar = findViewById(R.id.progressBar)
@@ -63,7 +63,7 @@ class EditUserActivity : BaseActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = ApiClientUsuarios.getUser(this@EditUserActivity, userId)
+                val response = ApiClientUsuarios.getUser(this@EditarUsuarioActivity, userId)
                 Log.d("api", response.toString())
                 if (response.isSuccessful) {
                     val user = response.body()!!
@@ -76,9 +76,9 @@ class EditUserActivity : BaseActivity() {
                     }
                 } else {
                     runOnUiThread {
-                        SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditUserActivity)
+                        SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditarUsuarioActivity)
                         Toast.makeText(
-                            this@EditUserActivity,
+                            this@EditarUsuarioActivity,
                             "Tu token ha expirado vuelve a loguearte",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -87,7 +87,7 @@ class EditUserActivity : BaseActivity() {
             } catch (e: java.net.SocketTimeoutException) {
                 runOnUiThread {
                     Toast.makeText(
-                        this@EditUserActivity,
+                        this@EditarUsuarioActivity,
                         "Vuelve a probar dentro de 1 minuto",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -96,7 +96,7 @@ class EditUserActivity : BaseActivity() {
                 runOnUiThread {
                     Log.d("api", "Exception: ", e)
                     Toast.makeText(
-                        this@EditUserActivity,
+                        this@EditarUsuarioActivity,
                         "Error al obtener los datos. Contacte con el administrador",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -109,7 +109,7 @@ class EditUserActivity : BaseActivity() {
         }
 
         updateButton.setOnClickListener {
-            hideKeyboard(this@EditUserActivity)
+            hideKeyboard(this@EditarUsuarioActivity)
             val username = usernameEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
             val admin = adminSwitch.isChecked
@@ -122,12 +122,12 @@ class EditUserActivity : BaseActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response =
-                        ApiClientUsuarios.updateUser(this@EditUserActivity, userId, request)
+                        ApiClientUsuarios.updateUser(this@EditarUsuarioActivity, userId, request)
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             runOnUiThread {
                                 Toast.makeText(
-                                    this@EditUserActivity,
+                                    this@EditarUsuarioActivity,
                                     "Se han actualizado los datos exitosamente",
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -135,10 +135,10 @@ class EditUserActivity : BaseActivity() {
                         } else {
                             runOnUiThread {
                                 SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(
-                                    this@EditUserActivity
+                                    this@EditarUsuarioActivity
                                 )
                                 Toast.makeText(
-                                    this@EditUserActivity,
+                                    this@EditarUsuarioActivity,
                                     "Tu token ha expirado vuelve a loguearte",
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -148,7 +148,7 @@ class EditUserActivity : BaseActivity() {
                 } catch (e: java.net.SocketTimeoutException) {
                     runOnUiThread {
                         Toast.makeText(
-                            this@EditUserActivity,
+                            this@EditarUsuarioActivity,
                             "Vuelve a probar dentro de 1 minuto",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -157,7 +157,7 @@ class EditUserActivity : BaseActivity() {
                     runOnUiThread {
                         Log.d("api", "Exception: ", e)
                         Toast.makeText(
-                            this@EditUserActivity,
+                            this@EditarUsuarioActivity,
                             "Error al actualizar los datos. Contacte con el administrador",
                             Toast.LENGTH_SHORT
                         ).show()

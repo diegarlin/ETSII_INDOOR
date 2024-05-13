@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
-import org.altbeacon.etsiindoor.ETSIINDOOR
 import org.altbeacon.activity.EntradasPorLetraActivity
 import org.altbeacon.activity.EntradasPorLetraYFechaActivity
 import org.altbeacon.activity.LoginActivity
@@ -24,7 +23,7 @@ import org.altbeacon.activity.PersonasActualPorLetraActivity
 import org.altbeacon.activity.PersonasActualPorLetraYFechaActivity
 import org.altbeacon.etsiindoor.R
 import org.altbeacon.activity.RegisterActivity
-import org.altbeacon.activity.UsersActivity
+import org.altbeacon.activity.ListaUsuariosActivity
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -166,7 +165,7 @@ open class BaseActivity : AppCompatActivity() {
             }
 
             R.id.listaUsuarios -> {
-                val intent = Intent(this, UsersActivity::class.java)
+                val intent = Intent(this, ListaUsuariosActivity::class.java)
                 startActivity(intent)
                 true
             }

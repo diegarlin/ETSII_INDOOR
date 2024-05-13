@@ -50,10 +50,10 @@
             android:name="org.altbeacon.activity.MandarAvisoActivity"
             android:exported="false" />
         <activity
-            android:name="org.altbeacon.activity.UsersActivity"
+            android:name="org.altbeacon.activity.ListaUsuariosActivity"
             android:exported="false" />
         <activity
-            android:name="org.altbeacon.activity.EditUserActivity"
+            android:name="org.altbeacon.activity.EditarUsuarioActivity"
             android:exported="false" />
         <activity
             android:name="org.altbeacon.activity.MainActivity"

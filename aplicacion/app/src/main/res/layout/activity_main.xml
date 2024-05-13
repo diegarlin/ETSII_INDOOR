@@ -18,9 +18,119 @@
         style="@style/MyNormalTextStyle"
         android:layout_width="match_parent"
         android:layout_height="113dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
-        android:text="Para probar las funcionalidades usar las opciones del menú superior" />
+        android:text="Estas son todas las funcionalidades que existen en la aplicación hasta ahora." />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Registrarse" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Iniciar sesión" />
+
+    <Button
+        android:id="@+id/mapaButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Mapa" />
+
+    <Button
+        android:id="@+id/entradasPorLetraButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Entradas por habitación" />
+
+    <Button
+        android:id="@+id/entradasPorLetraYFechaButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Entradas por habitación y fecha" />
+
+    <Button
+        android:id="@+id/personasActualPorLetraButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Personas por habitación" />
+
+    <Button
+        android:id="@+id/personasActualPorLetraYFechaButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Personas por habitación y fecha" />
+
+    <Button
+        android:id="@+id/monitorizeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Monitorizar" />
+
+    <Button
+        android:id="@+id/cerrarEntradasButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Cerrar entradas" />
+
+    <Button
+        android:id="@+id/listaUsuariosButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Lista usuarios" />
+
+    <Button
+        android:id="@+id/mandarAvisoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:icon="@drawable/ic_message"
+        android:text="Mandar aviso" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Cerrar sesión" />
+
 
 
 </LinearLayout>
