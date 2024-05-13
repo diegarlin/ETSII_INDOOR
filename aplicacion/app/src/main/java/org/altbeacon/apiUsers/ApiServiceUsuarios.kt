@@ -25,7 +25,7 @@ interface ApiServiceUsuarios {
     suspend fun send_email(@Header("Authorization") token: String, @Body request: EmailRequest): Response<JsonObject>
 
     @GET("/users")
-    suspend fun getUsers(): Response<List<User>>
+    suspend fun getUsers(@Header("Authorization") token: String): Response<List<User>>
 
     @GET("/users/{user_id}")
     suspend fun getUser(@Header("Authorization") token: String, @Path("user_id") userId: Int): Response<User>

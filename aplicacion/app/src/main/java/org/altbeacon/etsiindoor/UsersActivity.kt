@@ -15,6 +15,7 @@ import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.apiUsers.User
 import org.altbeacon.utils.BaseActivity
+import org.altbeacon.utils.SharedPreferencesManager
 
 class UsersActivity : BaseActivity() {
     private lateinit var usersListView: ListView
@@ -58,9 +59,9 @@ class UsersActivity : BaseActivity() {
                             }
                         }
                     } else {
-                        Log.d("api",response.toString() )
                         runOnUiThread {
-                            Toast.makeText(this@UsersActivity, "Error al obtener los registros", Toast.LENGTH_SHORT).show()
+                            SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@UsersActivity)
+                            Toast.makeText(this@UsersActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
