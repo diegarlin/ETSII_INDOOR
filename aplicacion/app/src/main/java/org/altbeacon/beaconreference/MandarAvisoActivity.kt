@@ -1,7 +1,9 @@
 package org.altbeacon.beaconreference
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -31,6 +33,9 @@ class MandarAvisoActivity : BaseActivity() {
         progressBar = findViewById(R.id.progressBar)
 
         sendButton.setOnClickListener {
+
+            hideKeyboard(this@MandarAvisoActivity)
+
             val subject = subjectEditText.text.toString()
             val body = bodyEditText.text.toString()
 
@@ -71,5 +76,15 @@ class MandarAvisoActivity : BaseActivity() {
         } else {
             Toast.makeText(this@MandarAvisoActivity, "No se encontró el token. Logueate de nuevo o por primera vez", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
+        var view = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

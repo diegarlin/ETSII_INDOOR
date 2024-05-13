@@ -1,6 +1,7 @@
 package org.altbeacon.beaconreference
 
 import BeaconTracker
+import android.app.Activity
 import org.altbeacon.utils.SharedPreferencesManager
 import android.app.Application
 import android.app.Notification
@@ -19,6 +20,8 @@ import org.altbeacon.beacon.BeaconParser
 import org.altbeacon.beacon.MonitorNotifier
 import org.altbeacon.beacon.Region
 import android.provider.Settings
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 
 class ETSIINDOOR: Application() {
@@ -169,6 +172,15 @@ class ETSIINDOOR: Application() {
         notificationManager.notify(1, builder.build())
     }
 
+    fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
+        var view = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
     companion object {
         val TAG = "BeaconReference"
         lateinit var deviceID: String

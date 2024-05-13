@@ -1,6 +1,7 @@
 package org.altbeacon.beaconreference
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,6 +20,7 @@ import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.apiUsers.UpdateUserRequest
 import org.altbeacon.utils.BaseActivity
+import org.altbeacon.utils.SharedPreferencesManager
 
 class EditUserActivity : BaseActivity() {
     private lateinit var progressBar: ProgressBar
@@ -75,6 +77,7 @@ class EditUserActivity : BaseActivity() {
                     }
                 } else {
                     runOnUiThread {
+                        SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditUserActivity)
                         Toast.makeText(this@EditUserActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -119,6 +122,7 @@ class EditUserActivity : BaseActivity() {
                             }
                         } else {
                             runOnUiThread {
+                                SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditUserActivity)
                                 Toast.makeText(this@EditUserActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
                             }
                         }

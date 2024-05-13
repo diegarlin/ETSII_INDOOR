@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Register"
+        android:title="Registrarse"
         android:id="@+id/registerMenu"
         android:icon="@drawable/ic_register"
         app:showAsAction="ifRoom"/>
     <item
-        android:title="Login"
+        android:title="Iniciar sesión"
         android:id="@+id/loginMenu"
         android:icon="@drawable/ic_login"
         app:showAsAction="ifRoom"/>
@@ -29,12 +29,12 @@
         android:id="@+id/closestBeaconMenu"/>
     <item android:title="Cerrar entradas"
         android:id="@+id/cerrarEntradas"/>
-    <item android:title="Lista Usuarios"
+    <item android:title="Lista usuarios"
         android:id="@+id/listaUsuarios"/>
-    <item android:title="Mandar Aviso"
+    <item android:title="Mandar aviso"
         android:id="@+id/mandarAviso"
         android:icon="@drawable/ic_message"
         app:showAsAction="ifRoom"/>
-    <item android:title="Logout"
+    <item android:title="Cerrar sesión"
         android:id="@+id/logoutMenu"/>
 </menu>
