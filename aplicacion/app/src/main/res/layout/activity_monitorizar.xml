@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context="org.altbeacon.activity.MainActivity">
+
+    <TextView
+        android:id="@+id/beaconCount"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="0 visible beacons:"
+        android:textAlignment="center" />
+
+    <ListView
+        android:id="@+id/beaconList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rangingButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:onClick="rangingButtonTapped"
+            android:text="Disable Ranging"></Button>
+
+        <Button
+            android:id="@+id/monitoringButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:onClick="monitoringButtonTapped"
+            android:text="Disable Monitoring"></Button>
+
+    </LinearLayout>
+
+</LinearLayout>
