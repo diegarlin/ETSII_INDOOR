@@ -13,18 +13,18 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.etsiindoor.ETSIINDOOR
-import org.altbeacon.etsiindoor.EntradasPorLetraActivity
-import org.altbeacon.etsiindoor.EntradasPorLetraYFechaActivity
-import org.altbeacon.etsiindoor.LoginActivity
-import org.altbeacon.etsiindoor.MainActivity
-import org.altbeacon.etsiindoor.MandarAvisoActivity
-import org.altbeacon.etsiindoor.MapaActivity
-import org.altbeacon.etsiindoor.MonitorizarActivity
-import org.altbeacon.etsiindoor.PersonasActualPorLetraActivity
-import org.altbeacon.etsiindoor.PersonasActualPorLetraYFechaActivity
+import org.altbeacon.activity.EntradasPorLetraActivity
+import org.altbeacon.activity.EntradasPorLetraYFechaActivity
+import org.altbeacon.activity.LoginActivity
+import org.altbeacon.activity.MainActivity
+import org.altbeacon.activity.MandarAvisoActivity
+import org.altbeacon.activity.MapaActivity
+import org.altbeacon.activity.MonitorizarActivity
+import org.altbeacon.activity.PersonasActualPorLetraActivity
+import org.altbeacon.activity.PersonasActualPorLetraYFechaActivity
 import org.altbeacon.etsiindoor.R
-import org.altbeacon.etsiindoor.RegisterActivity
-import org.altbeacon.etsiindoor.UsersActivity
+import org.altbeacon.activity.RegisterActivity
+import org.altbeacon.activity.UsersActivity
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -49,6 +49,8 @@ open class BaseActivity : AppCompatActivity() {
         menu?.findItem(R.id.cerrarEntradas)?.isVisible = esAdmin
         menu?.findItem(R.id.mandarAviso)?.isVisible = esAdmin
         menu?.findItem(R.id.listaUsuarios)?.isVisible = esAdmin
+        menu?.findItem(R.id.monitorizeMenu)?.isVisible = esAdmin
+
         return true
     }
 
@@ -99,12 +101,6 @@ open class BaseActivity : AppCompatActivity() {
             R.id.personasActualPorLetraYFechaMenu -> {
                 val intent = Intent(this, PersonasActualPorLetraYFechaActivity::class.java)
                 startActivity(intent)
-                true
-            }
-
-            R.id.closestBeaconMenu -> {
-                val beaconTracker = (application as ETSIINDOOR).beaconTracker
-                beaconTracker.updateRoomRecords()
                 true
             }
 

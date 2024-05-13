@@ -1,4 +1,4 @@
-package org.altbeacon.etsiindoor
+package org.altbeacon.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import org.altbeacon.etsiindoor.R
 import org.altbeacon.utils.BaseActivity
 
 class MapaActivity : BaseActivity() {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="org.altbeacon.activity.MainActivity">
 
     <TextView
         android:id="@+id/beaconCount"

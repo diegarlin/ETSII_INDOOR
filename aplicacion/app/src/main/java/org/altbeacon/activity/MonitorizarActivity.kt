@@ -1,4 +1,4 @@
-package org.altbeacon.etsiindoor
+package org.altbeacon.activity
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer
 import org.altbeacon.beacon.Beacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.MonitorNotifier
+import org.altbeacon.etsiindoor.ETSIINDOOR
+import org.altbeacon.etsiindoor.R
 
 class MonitorizarActivity : AppCompatActivity() {
     lateinit var beaconListView: ListView

@@ -1,7 +1,6 @@
 package org.altbeacon.etsiindoor
 
-import BeaconTracker
-import android.app.Activity
+import org.altbeacon.utils.BeaconTracker
 import android.app.Application
 import android.app.Notification
 import android.app.NotificationChannel
@@ -12,10 +11,9 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.Observer
+import org.altbeacon.activity.MainActivity
 import org.altbeacon.beacon.Beacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.BeaconParser
@@ -68,17 +66,9 @@ class ETSIINDOOR : Application() {
         beaconManager.startMonitoring(region)
         beaconManager.startRangingBeacons(region)
 
-
-//        val myRangeNotifier = MyRangeNotifier(this)
-//        val myMonitorNotifier = MyMonitorNotifier(this)
-
-//        beaconManager.addRangeNotifier(myRangeNotifier)
-//        beaconManager.addMonitorNotifier(myMonitorNotifier)
     }
 
     fun setupBeaconScanning() {
-        val beaconManager = BeaconManager.getInstanceForApplication(this)
-
 
         try {
             setupForegroundService()
@@ -94,17 +84,10 @@ class ETSIINDOOR : Application() {
         // These two lines set up a Live Data observer so this Activity can get beacon data from the Application class
         val regionViewModel =
             BeaconManager.getInstanceForApplication(this).getRegionViewModel(region)
-//        val regionViewModel1 = BeaconManager.getInstanceForApplication(this).getRegionViewModel(region1)
-//        val regionViewModel2 = BeaconManager.getInstanceForApplication(this).getRegionViewModel(region2)
         // observer will be called each time the monitored regionState changes (inside vs. outside region)
         regionViewModel.regionState.observeForever(centralMonitoringObserver)
-//        regionViewModel1.regionState.observeForever( centralMonitoringObserver)
-//        regionViewModel2.regionState.observeForever( centralMonitoringObserver)
         // observer will be called each time a new list of beacons is ranged (typically ~1 second in the foreground)
         regionViewModel.rangedBeacons.observeForever(centralRangingObserver)
-//        regionViewModel1.rangedBeacons.observeForever( centralRangingObserver)
-//        regionViewModel2.rangedBeacons.observeForever( centralRangingObserver)
-
 
     }
 
@@ -179,17 +162,6 @@ class ETSIINDOOR : Application() {
         notificationManager.createNotificationChannel(channel)
         builder.setChannelId(channel.id)
         notificationManager.notify(1, builder.build())
-    }
-
-    fun hideKeyboard(activity: Activity) {
-        val inputMethodManager =
-            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
-        var view = activity.currentFocus
-        if (view == null) {
-            view = View(activity)
-        }
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     companion object {

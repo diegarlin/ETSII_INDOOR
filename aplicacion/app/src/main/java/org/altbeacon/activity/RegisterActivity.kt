@@ -1,4 +1,4 @@
-package org.altbeacon.etsiindoor
+package org.altbeacon.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -18,6 +18,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.altbeacon.apiUsers.ApiClientUsuarios
+import org.altbeacon.etsiindoor.ETSIINDOOR
+import org.altbeacon.etsiindoor.R
 import org.altbeacon.utils.BaseActivity
 
 class RegisterActivity : BaseActivity() {

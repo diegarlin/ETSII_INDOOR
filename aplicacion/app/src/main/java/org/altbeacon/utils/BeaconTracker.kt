@@ -1,3 +1,7 @@
+package org.altbeacon.utils
+
+import ApiClientRegistros
+import Registro
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -25,7 +29,7 @@ class BeaconTracker(private val etsiindoor: ETSIINDOOR) {
         }
         beaconRecords[beaconId]?.add(distance)
         Log.d(
-            "BeaconTracker",
+            "org.altbeacon.utils.BeaconTracker",
             "${beaconRecords[beaconId]?.size} records for beacon $beaconId with distance $distance"
         )
     }
@@ -77,9 +81,9 @@ class BeaconTracker(private val etsiindoor: ETSIINDOOR) {
                             Registro(beacon = closestBeacon, tipo = "salida", deviceID = deviceID)
                         val response = ApiClientRegistros.createRegistro(registroSalida)
                         if (response.isSuccessful) {
-                            Log.d("BeaconTracker", "Registro de salida creado exitosamente")
+                            Log.d("org.altbeacon.utils.BeaconTracker", "Registro de salida creado exitosamente")
                         } else {
-                            Log.d("BeaconTracker", "Error al crear registro de salida")
+                            Log.d("org.altbeacon.utils.BeaconTracker", "Error al crear registro de salida")
                         }
                     } else {
                         // Si he entrado en la A0.12 depsués de estar en la A0.11 tengo que hacer el de salida de la A0.11
@@ -92,9 +96,9 @@ class BeaconTracker(private val etsiindoor: ETSIINDOOR) {
                             )
                             val response = ApiClientRegistros.createRegistro(registroSalida)
                             if (response.isSuccessful) {
-                                Log.d("BeaconTracker", "Registro de salida creado exitosamente")
+                                Log.d("org.altbeacon.utils.BeaconTracker", "Registro de salida creado exitosamente")
                             } else {
-                                Log.d("BeaconTracker", "Error al crear registro de salida")
+                                Log.d("org.altbeacon.utils.BeaconTracker", "Error al crear registro de salida")
                             }
                         }
                         //Anadir registro de entrada
@@ -105,30 +109,30 @@ class BeaconTracker(private val etsiindoor: ETSIINDOOR) {
                         )
                         val response = ApiClientRegistros.createRegistro(registroEntrada)
                         if (response.isSuccessful) {
-                            Log.d("BeaconTracker", "Registro de entrada creado exitosamente")
+                            Log.d("org.altbeacon.utils.BeaconTracker", "Registro de entrada creado exitosamente")
                             if (needsSpecialPermission()) {
                                 etsiindoor.sendNotification("Necesita permiso especial para entrar en la facultad")
                                 Log.d(
-                                    "BeaconTracker",
+                                    "org.altbeacon.utils.BeaconTracker",
                                     "Necesita permiso especial para entrar en la facultad"
                                 )
                             }
                         } else {
-                            Log.d("BeaconTracker", "Error al crear registro de entrada")
+                            Log.d("org.altbeacon.utils.BeaconTracker", "Error al crear registro de entrada")
                         }
                     }
-                    Log.d("BeaconTracker", "Antiguo: $closestBeacon, Nuevo: $newclosestBeacon")
+                    Log.d("org.altbeacon.utils.BeaconTracker", "Antiguo: $closestBeacon, Nuevo: $newclosestBeacon")
                     closestBeacon = newclosestBeacon
                 } else {
                     Log.d(
-                        "BeaconTracker",
+                        "org.altbeacon.utils.BeaconTracker",
                         "Sigues en la misma habitación con beaconID: $closestBeacon "
                     )
                 }
 
                 beaconRecords.clear()
             } catch (e: Exception) {
-                Log.e("BeaconTracker", "Error al actualizar los registros de la sala", e)
+                Log.e("org.altbeacon.utils.BeaconTracker", "Error al actualizar los registros de la sala", e)
             }
         }
     }

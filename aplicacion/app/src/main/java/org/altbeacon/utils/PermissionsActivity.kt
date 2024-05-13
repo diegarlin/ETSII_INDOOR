@@ -1,4 +1,4 @@
-package org.altbeacon.beacon.permissions
+package org.altbeacon.utils
 
 import android.Manifest
 import android.annotation.SuppressLint

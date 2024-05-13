@@ -1,4 +1,4 @@
-package org.altbeacon.etsiindoor
+package org.altbeacon.activity
 
 import android.Manifest
 import android.app.AlertDialog
@@ -11,7 +11,8 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
-import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
+import org.altbeacon.utils.BeaconScanPermissionsActivity
+import org.altbeacon.etsiindoor.R
 import org.altbeacon.utils.BaseActivity
 
 

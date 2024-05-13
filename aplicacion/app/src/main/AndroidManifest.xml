@@ -23,40 +23,40 @@
         android:theme="@style/Theme.MyAppTheme">
 
         <activity
-            android:name=".MapaActivity"
+            android:name="org.altbeacon.activity.MapaActivity"
             android:exported="false" />
         <activity
-            android:name=".MonitorizarActivity"
+            android:name="org.altbeacon.activity.MonitorizarActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="org.altbeacon.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name="org.altbeacon.activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".EntradasPorLetraActivity"
+            android:name="org.altbeacon.activity.EntradasPorLetraActivity"
             android:exported="false" />
         <activity
-            android:name=".EntradasPorLetraYFechaActivity"
+            android:name="org.altbeacon.activity.EntradasPorLetraYFechaActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonasActualPorLetraActivity"
+            android:name="org.altbeacon.activity.PersonasActualPorLetraActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonasActualPorLetraYFechaActivity"
+            android:name="org.altbeacon.activity.PersonasActualPorLetraYFechaActivity"
             android:exported="false" />
         <activity
-            android:name=".MandarAvisoActivity"
+            android:name="org.altbeacon.activity.MandarAvisoActivity"
             android:exported="false" />
         <activity
-            android:name=".UsersActivity"
+            android:name="org.altbeacon.activity.UsersActivity"
             android:exported="false" />
         <activity
-            android:name=".EditUserActivity"
+            android:name="org.altbeacon.activity.EditUserActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="org.altbeacon.activity.MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -65,7 +65,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity"
+            android:name="org.altbeacon.utils.BeaconScanPermissionsActivity"
             android:exported="false" />
     </application>
 </manifest>
