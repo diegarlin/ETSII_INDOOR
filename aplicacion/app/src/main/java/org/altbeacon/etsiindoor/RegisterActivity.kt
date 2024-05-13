@@ -4,20 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.altbeacon.apiUsers.ApiClientUsuarios
-import android.widget.TextView
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.utils.BaseActivity
 
 class RegisterActivity : BaseActivity() {
@@ -34,7 +34,7 @@ class RegisterActivity : BaseActivity() {
         setupToolbar(R.id.toolbar)
 
         usernameEditText = findViewById(R.id.usernameEditText)
-        emailEditText= findViewById(R.id.emailEditText)
+        emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         registerButton = findViewById(R.id.registerButton)
         errorTextView = findViewById(R.id.errorTextView)
@@ -49,7 +49,8 @@ class RegisterActivity : BaseActivity() {
             hideKeyboard(this@RegisterActivity)
 
             if (username.isBlank() || password.isBlank() || email.isBlank()) {
-                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 registerUser(username, email, password)
             }
@@ -73,7 +74,13 @@ class RegisterActivity : BaseActivity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = ETSIINDOOR.deviceID
-                val response = ApiClientUsuarios.register(this@RegisterActivity, username,email, password, deviceID)
+                val response = ApiClientUsuarios.register(
+                    this@RegisterActivity,
+                    username,
+                    email,
+                    password,
+                    deviceID
+                )
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {
@@ -99,9 +106,13 @@ class RegisterActivity : BaseActivity() {
                 }
             } catch (e: java.net.SocketTimeoutException) {
                 runOnUiThread {
-                    Toast.makeText(this@RegisterActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Vuelve a probar dentro de 1 minuto",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 runOnUiThread {
                     Log.d("api", "Exception: ", e)
                     Toast.makeText(
@@ -110,7 +121,7 @@ class RegisterActivity : BaseActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }finally {
+            } finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE
                 }
@@ -119,7 +130,8 @@ class RegisterActivity : BaseActivity() {
     }
 
     fun hideKeyboard(activity: Activity) {
-        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
         var view = activity.currentFocus
         if (view == null) {
@@ -127,6 +139,7 @@ class RegisterActivity : BaseActivity() {
         }
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
     private fun showError(message: String) {
         runOnUiThread {
             errorTextView.visibility = View.VISIBLE

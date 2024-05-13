@@ -9,9 +9,11 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import org.altbeacon.etsiindoor.R
 
-class HabitacionAdapter(private val context: Context, private val dataSource: List<Habitacion>) : BaseAdapter() {
+class HabitacionAdapter(private val context: Context, private val dataSource: List<Habitacion>) :
+    BaseAdapter() {
 
-    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return dataSource.size
@@ -28,8 +30,8 @@ class HabitacionAdapter(private val context: Context, private val dataSource: Li
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.habitacion_adapter, parent, false)
 
-        val habitacionTextView = rowView.findViewById(R.id.habitacionTextView) as TextView
-        val numPersonasTextView = rowView.findViewById(R.id.numPersonasTextView) as TextView
+        val habitacionTextView: TextView = rowView.findViewById(R.id.habitacionTextView)
+        val numPersonasTextView: TextView = rowView.findViewById(R.id.numPersonasTextView)
 
         val habitacion = getItem(position) as Habitacion
 

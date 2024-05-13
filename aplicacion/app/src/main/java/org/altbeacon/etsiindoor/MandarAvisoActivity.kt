@@ -54,17 +54,30 @@ class MandarAvisoActivity : BaseActivity() {
                     progressBar.visibility = View.VISIBLE
                 }
                 try {
-                    val response = ApiClientUsuarios.send_email(this@MandarAvisoActivity, subject, body, token)
+                    val response =
+                        ApiClientUsuarios.send_email(this@MandarAvisoActivity, subject, body, token)
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
-                            Toast.makeText(this@MandarAvisoActivity, "Correo enviado con éxito", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@MandarAvisoActivity,
+                                "Correo enviado con éxito",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
-                            Toast.makeText(this@MandarAvisoActivity, "Error al enviar el correo", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@MandarAvisoActivity,
+                                "Error al enviar el correo",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@MandarAvisoActivity, "Ha habido un problema con el servidor. Prueba en 1 minuto.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@MandarAvisoActivity,
+                            "Ha habido un problema con el servidor. Prueba en 1 minuto.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } finally {
                     withContext(Dispatchers.Main) {
@@ -73,12 +86,17 @@ class MandarAvisoActivity : BaseActivity() {
                 }
             }
         } else {
-            Toast.makeText(this@MandarAvisoActivity, "No se encontró el token. Logueate de nuevo o por primera vez", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this@MandarAvisoActivity,
+                "No se encontró el token. Logueate de nuevo o por primera vez",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     fun hideKeyboard(activity: Activity) {
-        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
         var view = activity.currentFocus
         if (view == null) {

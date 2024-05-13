@@ -49,13 +49,15 @@ class MonitorizarActivity : AppCompatActivity() {
         beaconListView = findViewById<ListView>(R.id.beaconList)
         beaconCountTextView = findViewById<TextView>(R.id.beaconCount)
         beaconCountTextView.text = "No beacons detected"
-        beaconListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
+        beaconListView.adapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
     }
 
     override fun onPause() {
         Log.d(TAG, "onPause")
         super.onPause()
     }
+
     override fun onResume() {
         Log.d(TAG, "onResume")
         super.onResume()
@@ -76,14 +78,16 @@ class MonitorizarActivity : AppCompatActivity() {
         var dialogTitle = "Beacons detected"
         var dialogMessage = "didEnterRegionEvent has fired"
         var stateString = "inside"
-        when(state) {
+        when (state) {
             MonitorNotifier.OUTSIDE -> {
                 dialogTitle = "No beacons detected"
                 dialogMessage = "didExitRegionEvent has fired"
                 stateString = "outside"
                 beaconCountTextView.text = "Outside of the beacon region -- no beacons detected"
-                beaconListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
+                beaconListView.adapter =
+                    ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
             }
+
             else -> {
                 beaconCountTextView.text = "Inside the beacon region."
             }
@@ -106,7 +110,9 @@ class MonitorizarActivity : AppCompatActivity() {
             beaconListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
                 beacons
                     .sortedBy { it.distance }
-                    .map { "UUID:${it.id1}\n MAJOR: ${it.id2} MINOR:${it.id3}  rssi: ${it.rssi}\nest. distance: ${it.distance} m" }.toTypedArray())
+                    .map { "UUID:${it.id1}\n MAJOR: ${it.id2} MINOR:${it.id3}  rssi: ${it.rssi}\nest. distance: ${it.distance} m" }
+                    .toTypedArray()
+            )
 
         }
     }
@@ -117,12 +123,12 @@ class MonitorizarActivity : AppCompatActivity() {
             beaconManager.startRangingBeacons(ETSIINDOOR.region)
             rangingButton.text = "Stop Ranging"
             beaconCountTextView.text = "Ranging enabled -- awaiting first callback"
-        }
-        else {
+        } else {
             beaconManager.stopRangingBeacons(ETSIINDOOR.region)
             rangingButton.text = "Start Ranging"
             beaconCountTextView.text = "Ranging disabled -- no beacons detected"
-            beaconListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
+            beaconListView.adapter =
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayOf("--"))
         }
     }
 
@@ -133,11 +139,11 @@ class MonitorizarActivity : AppCompatActivity() {
         if (beaconManager.monitoredRegions.size == 0) {
             beaconManager.startMonitoring(ETSIINDOOR.region)
             dialogTitle = "Beacon monitoring started."
-            dialogMessage = "You will see a dialog if a beacon is detected, and another if beacons then stop being detected."
+            dialogMessage =
+                "You will see a dialog if a beacon is detected, and another if beacons then stop being detected."
             monitoringButton.text = "Stop Monitoring"
 
-        }
-        else {
+        } else {
             beaconManager.stopMonitoring(ETSIINDOOR.region)
             dialogTitle = "Beacon monitoring stopped."
             dialogMessage = "You will no longer see dialogs when beacons start/stop being detected."

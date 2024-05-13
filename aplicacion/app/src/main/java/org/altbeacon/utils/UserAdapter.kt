@@ -8,9 +8,11 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import org.altbeacon.apiUsers.User
 
-class UserAdapter(private val context: Context, private val dataSource: List<User>) : BaseAdapter() {
+class UserAdapter(private val context: Context, private val dataSource: List<User>) :
+    BaseAdapter() {
 
-    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return dataSource.size
@@ -32,8 +34,8 @@ class UserAdapter(private val context: Context, private val dataSource: List<Use
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.user_adapter, parent, false)
 
-        val usernameTextView = rowView.findViewById(R.id.usernameTextView) as TextView
-        val emailTextView = rowView.findViewById(R.id.emailTextView) as TextView
+        val usernameTextView: TextView = rowView.findViewById(R.id.usernameTextView)
+        val emailTextView: TextView = rowView.findViewById(R.id.emailTextView)
 
         val user = getItem(position) as User
 

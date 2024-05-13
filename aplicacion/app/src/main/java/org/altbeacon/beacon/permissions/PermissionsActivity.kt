@@ -2,7 +2,6 @@ package org.altbeacon.beacon.permissions
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -19,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 
-open class PermissionsActivity: AppCompatActivity() {
+open class PermissionsActivity : AppCompatActivity() {
 
     val requestPermissionsLauncher =
         registerForActivityResult(
@@ -55,14 +54,21 @@ class PermissionsHelper(val context: Context) {
     // Manifest.permission.BLUETOOTH_CONNECT
     // Manifest.permission.BLUETOOTH_SCAN
     fun isPermissionGranted(permissionString: String): Boolean {
-        return (ContextCompat.checkSelfPermission(context, permissionString) == PackageManager.PERMISSION_GRANTED)
+        return (ContextCompat.checkSelfPermission(
+            context,
+            permissionString
+        ) == PackageManager.PERMISSION_GRANTED)
     }
+
     fun setFirstTimeAskingPermission(permissionString: String, isFirstTime: Boolean) {
-        val sharedPreference = context.getSharedPreferences("org.altbeacon.permisisons",
+        val sharedPreference = context.getSharedPreferences(
+            "org.altbeacon.permisisons",
             AppCompatActivity.MODE_PRIVATE
         )
-        sharedPreference.edit().putBoolean(permissionString,
-            isFirstTime).apply()
+        sharedPreference.edit().putBoolean(
+            permissionString,
+            isFirstTime
+        ).apply()
     }
 
     fun isFirstTimeAskingPermission(permissionString: String): Boolean {
@@ -75,6 +81,7 @@ class PermissionsHelper(val context: Context) {
             true
         )
     }
+
     fun beaconScanPermissionGroupsNeeded(backgroundAccessRequested: Boolean = false): List<Array<String>> {
         val permissions = ArrayList<Array<String>>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -92,7 +99,12 @@ class PermissionsHelper(val context: Context) {
             // Manifest.permission.BLUETOOTH_CONNECT is not absolutely required to do just scanning,
             // but it is required if you want to access some info from the scans like the device name
             // and the aditional cost of requsting this access is minimal, so we just request it
-            permissions.add(arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT))
+            permissions.add(
+                arrayOf(
+                    Manifest.permission.BLUETOOTH_SCAN,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                )
+            )
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // As of version T (13) we POST_NOTIFICATIONS permissions if using a foreground service
@@ -104,14 +116,13 @@ class PermissionsHelper(val context: Context) {
 }
 
 
-
-open class BeaconScanPermissionsActivity: PermissionsActivity()  {
+open class BeaconScanPermissionsActivity : PermissionsActivity() {
     lateinit var layout: LinearLayout
     lateinit var permissionGroups: List<Array<String>>
     lateinit var continueButton: Button
     var scale: Float = 1.0f
         get() {
-            return this.getResources().getDisplayMetrics().density
+            return this.getResources().displayMetrics.density
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,11 +135,14 @@ open class BeaconScanPermissionsActivity: PermissionsActivity()  {
         layout.orientation = LinearLayout.VERTICAL
         val backgroundAccessRequested = intent.getBooleanExtra("backgroundAccessRequested", true)
         val title = intent.getStringExtra("title") ?: "Permissions Needed"
-        val message = intent.getStringExtra("message") ?: "In order to scan for beacons, this app requrires the following permissions from the operating system.  Please tap each button to grant each required permission."
+        val message = intent.getStringExtra("message")
+            ?: "In order to scan for beacons, this app requrires the following permissions from the operating system.  Please tap each button to grant each required permission."
         val continueButtonTitle = intent.getStringExtra("continueButtonTitle") ?: "Continue"
-        val permissionButtonTitles = intent.getBundleExtra("permissionBundleTitles") ?: getDefaultPermissionTitlesBundle()
+        val permissionButtonTitles =
+            intent.getBundleExtra("permissionBundleTitles") ?: getDefaultPermissionTitlesBundle()
 
-        permissionGroups = PermissionsHelper(this).beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
+        permissionGroups =
+            PermissionsHelper(this).beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -211,13 +225,13 @@ open class BeaconScanPermissionsActivity: PermissionsActivity()  {
             val button = findViewById<Button>(index)
             if (allPermissionsGranted(permissionsGroup)) {
                 button.setBackgroundColor(Color.parseColor("#448844"))
-            }
-            else {
+            } else {
                 button.setBackgroundColor(Color.RED)
             }
             index += 1
         }
     }
+
     override fun onResume() {
         super.onResume()
         setButtonColors()
@@ -243,6 +257,7 @@ open class BeaconScanPermissionsActivity: PermissionsActivity()  {
             }
         }
     }
+
     fun allPermissionsGranted(permissionsGroup: Array<String>): Boolean {
         val permissionsHelper = PermissionsHelper(this)
         for (permission in permissionsGroup) {
@@ -257,7 +272,8 @@ open class BeaconScanPermissionsActivity: PermissionsActivity()  {
         const val TAG = "BeaconScanPermissionActivity"
         fun allPermissionsGranted(context: Context, backgroundAccessRequested: Boolean): Boolean {
             val permissionsHelper = PermissionsHelper(context)
-            val permissionsGroups = permissionsHelper.beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
+            val permissionsGroups =
+                permissionsHelper.beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
             for (permissionsGroup in permissionsGroups) {
                 for (permission in permissionsGroup) {
                     if (!permissionsHelper.isPermissionGranted(permission)) {

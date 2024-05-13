@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <!-- Below is only needed if you want to read the device name or establish a bluetooth connection
     -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <!--  IMPORTNATE QUITAR android:usesCleartextTraffic="true" ya que podría acceder a HTTP, mi api debe tener certificados ya que sino fallará-->
     <application
         android:name="ETSIINDOOR"
@@ -21,25 +22,50 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAppTheme">
 
-        <activity android:name=".MapaActivity" android:exported="false"/>
-        <activity android:name=".MonitorizarActivity" android:exported="false"/>
-        <activity android:name=".LoginActivity" android:exported="false"/>
-        <activity android:name=".RegisterActivity" android:exported="false"/>
-        <activity android:name=".EntradasPorLetraActivity" android:exported="false"/>
-        <activity android:name=".EntradasPorLetraYFechaActivity" android:exported="false"/>
-        <activity android:name=".PersonasActualPorLetraActivity" android:exported="false"/>
-        <activity android:name=".PersonasActualPorLetraYFechaActivity" android:exported="false"/>
-        <activity android:name=".MandarAvisoActivity" android:exported="false"/>
-        <activity android:name=".UsersActivity" android:exported="false"/>
-        <activity android:name=".EditUserActivity" android:exported="false"/>
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".MapaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonitorizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EntradasPorLetraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EntradasPorLetraYFechaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PersonasActualPorLetraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PersonasActualPorLetraYFechaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MandarAvisoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity"
-            android:exported="false"/>
+        <activity
+            android:name="org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity"
+            android:exported="false" />
     </application>
 </manifest>

@@ -61,17 +61,25 @@ class UsersActivity : BaseActivity() {
                     } else {
                         runOnUiThread {
                             SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@UsersActivity)
-                            Toast.makeText(this@UsersActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@UsersActivity,
+                                "Tu token ha expirado vuelve a loguearte",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
             } catch (e: java.net.SocketTimeoutException) {
                 runOnUiThread {
-                    Toast.makeText(this@UsersActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@UsersActivity,
+                        "Vuelve a probar dentro de 1 minuto",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }catch(e: Exception){
+            } catch (e: Exception) {
                 runOnUiThread {
-                    Log.d("api","Exception: "+ e.toString())
+                    Log.d("api", "Exception: " + e.toString())
                     Toast.makeText(
                         this@UsersActivity,
                         "Error al obtener los registros. Contacte con el administrador",
@@ -85,10 +93,12 @@ class UsersActivity : BaseActivity() {
                         // Get the User at the clicked position
                         val user = usersAdapter.getItem(position) as User
                         // Show a Toast with the User's username
-                        val intent = Intent(this@UsersActivity, EditUserActivity::class.java).apply {
-                            putExtra("USER_ID", user.id)
-                        }
-                        startActivity(intent)                    }
+                        val intent =
+                            Intent(this@UsersActivity, EditUserActivity::class.java).apply {
+                                putExtra("USER_ID", user.id)
+                            }
+                        startActivity(intent)
+                    }
                 }
             }
         }

@@ -22,35 +22,54 @@ interface ApiServiceUsuarios {
 
     @Headers("Content-Type: application/json")
     @POST("/send_email")
-    suspend fun send_email(@Header("Authorization") token: String, @Body request: EmailRequest): Response<JsonObject>
+    suspend fun send_email(
+        @Header("Authorization") token: String,
+        @Body request: EmailRequest
+    ): Response<JsonObject>
 
     @GET("/users")
     suspend fun getUsers(@Header("Authorization") token: String): Response<List<User>>
 
     @GET("/users/{user_id}")
-    suspend fun getUser(@Header("Authorization") token: String, @Path("user_id") userId: Int): Response<User>
+    suspend fun getUser(
+        @Header("Authorization") token: String,
+        @Path("user_id") userId: Int
+    ): Response<User>
 
     @PUT("/users/{user_id}")
-    suspend fun updateUser(@Header("Authorization") token: String, @Path("user_id") userId: Int, @Body request: UpdateUserRequest): Response<User>
+    suspend fun updateUser(
+        @Header("Authorization") token: String,
+        @Path("user_id") userId: Int,
+        @Body request: UpdateUserRequest
+    ): Response<User>
 
 }
+
 data class LoginRequest(
     val usernameOrEmail: String,
     val password: String,
     val deviceID: String
 )
 
-data class RegisterRequest(val username: String,
-                           val email: String,
-                           val password: String,
-                           val deviceID: String)
-data class EmailRequest(val subject: String,
-                        val body: String)
-data class UpdateUserRequest(val username: String,
-                             val email: String,
-                             val admin: Boolean,
-                             val profesor: Boolean,
-                             val despacho: String)
+data class RegisterRequest(
+    val username: String,
+    val email: String,
+    val password: String,
+    val deviceID: String
+)
+
+data class EmailRequest(
+    val subject: String,
+    val body: String
+)
+
+data class UpdateUserRequest(
+    val username: String,
+    val email: String,
+    val admin: Boolean,
+    val profesor: Boolean,
+    val despacho: String
+)
 
 data class User(
     val id: Int,

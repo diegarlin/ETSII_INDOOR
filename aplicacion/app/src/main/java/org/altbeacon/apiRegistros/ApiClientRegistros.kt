@@ -1,9 +1,9 @@
+import ApiServiceRegistros.Habitacion
 import android.util.Log
 import com.google.gson.JsonObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ApiServiceRegistros.Habitacion
 
 object ApiClientRegistros {
     private const val BASE_URL = "https://api-mongo-9eqi.onrender.com/"
@@ -28,7 +28,11 @@ object ApiClientRegistros {
         return response
     }
 
-    suspend fun getEntradasPorLetraYFecha(letra: String, fechaInicio: String, fechaFin: String): Response<List<Habitacion>> {
+    suspend fun getEntradasPorLetraYFecha(
+        letra: String,
+        fechaInicio: String,
+        fechaFin: String
+    ): Response<List<Habitacion>> {
         val response = apiService.getEntradasPorLetraYFecha(letra, fechaInicio, fechaFin)
         Log.d("api", "Obtención de entradas por habitación y fecha correcto")
         return response
@@ -40,7 +44,10 @@ object ApiClientRegistros {
         return response
     }
 
-    suspend fun getPersonasActualPorLetraYFecha(letra: String, fecha: String): Response<List<Habitacion>> {
+    suspend fun getPersonasActualPorLetraYFecha(
+        letra: String,
+        fecha: String
+    ): Response<List<Habitacion>> {
         val response = apiService.getPersonasActualPorLetraYFecha(letra, fecha)
         Log.d("api", "Obtención de entradas por habitación y fecha correcto")
         return response

@@ -1,20 +1,20 @@
 package org.altbeacon.etsiindoor
 
+import ApiClientRegistros
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import android.view.View
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.altbeacon.utils.HabitacionAdapter
-import ApiClientRegistros
-import android.util.Log
 import org.altbeacon.utils.BaseActivity
+import org.altbeacon.utils.HabitacionAdapter
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
@@ -59,19 +59,31 @@ class EntradasPorLetraYFechaActivity : BaseActivity() {
 
             if (fechaInicio.isNotEmpty() && fechaFin.isNotEmpty()) {
                 if (!isFechaInicioBeforeFechaFin(fechaInicio, fechaFin)) {
-                    Toast.makeText(this, "La fecha de inicio debe ser anterior a la fecha de fin", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "La fecha de inicio debe ser anterior a la fecha de fin",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return@setOnClickListener
                 }
 
                 if (!isFechaNotInFuture(fechaInicio) || !isFechaNotInFuture(fechaFin)) {
-                    Toast.makeText(this, "Las fechas no pueden ser posteriores a la fecha y hora actual", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Las fechas no pueden ser posteriores a la fecha y hora actual",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return@setOnClickListener
                 }
 
                 progressBar.visibility = View.VISIBLE
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val response = ApiClientRegistros.getEntradasPorLetraYFecha(letra, fechaInicio, fechaFin)
+                        val response = ApiClientRegistros.getEntradasPorLetraYFecha(
+                            letra,
+                            fechaInicio,
+                            fechaFin
+                        )
 
                         if (response.isSuccessful && response.body() != null) {
                             val habitaciones = response.body()!!
@@ -83,16 +95,23 @@ class EntradasPorLetraYFechaActivity : BaseActivity() {
                                 } else {
                                     listView.visibility = View.VISIBLE
                                     emptyTextView.visibility = View.GONE
-                                    listView.adapter = HabitacionAdapter(this@EntradasPorLetraYFechaActivity, habitaciones)
+                                    listView.adapter = HabitacionAdapter(
+                                        this@EntradasPorLetraYFechaActivity,
+                                        habitaciones
+                                    )
                                 }
                             }
                         } else {
                             Log.d("api", response.toString())
                             runOnUiThread {
-                                Toast.makeText(this@EntradasPorLetraYFechaActivity, "Error al obtener los registros", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@EntradasPorLetraYFechaActivity,
+                                    "Error al obtener los registros",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
-                    }catch (e: java.net.SocketTimeoutException) {
+                    } catch (e: java.net.SocketTimeoutException) {
                         runOnUiThread {
                             Toast.makeText(
                                 this@EntradasPorLetraYFechaActivity,
@@ -115,7 +134,11 @@ class EntradasPorLetraYFechaActivity : BaseActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Por favor, introduce las fechas de inicio y fin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Por favor, introduce las fechas de inicio y fin",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -123,23 +146,26 @@ class EntradasPorLetraYFechaActivity : BaseActivity() {
     private fun showJodaDateTimePicker(textView: TextView) {
         val now = DateTime()
 
-        val datePickerDialog = com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
-            { _, year, monthOfYear, dayOfMonth ->
-                val timePickerDialog = com.wdullaer.materialdatetimepicker.time.TimePickerDialog.newInstance(
-                    { _, hourOfDay, minute, _ ->
-                        val selectedDateTime = DateTime(year, monthOfYear + 1, dayOfMonth, hourOfDay, minute)
-                        textView.setText(selectedDateTime.toString("yyyy-MM-dd HH:mm"))
-                    },
-                    now.hourOfDay,
-                    now.minuteOfHour,
-                    true
-                )
-                timePickerDialog.show(supportFragmentManager, "TimePickerDialog")
-            },
-            now.year,
-            now.monthOfYear - 1,
-            now.dayOfMonth
-        )
+        val datePickerDialog =
+            com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
+                { _, year, monthOfYear, dayOfMonth ->
+                    val timePickerDialog =
+                        com.wdullaer.materialdatetimepicker.time.TimePickerDialog.newInstance(
+                            { _, hourOfDay, minute, _ ->
+                                val selectedDateTime =
+                                    DateTime(year, monthOfYear + 1, dayOfMonth, hourOfDay, minute)
+                                textView.text = selectedDateTime.toString("yyyy-MM-dd HH:mm")
+                            },
+                            now.hourOfDay,
+                            now.minuteOfHour,
+                            true
+                        )
+                    timePickerDialog.show(supportFragmentManager, "TimePickerDialog")
+                },
+                now.year,
+                now.monthOfYear - 1,
+                now.dayOfMonth
+            )
         datePickerDialog.show(supportFragmentManager, "DatePickerDialog")
     }
 

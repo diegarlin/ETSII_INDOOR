@@ -3,38 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Registrarse"
         android:id="@+id/registerMenu"
         android:icon="@drawable/ic_register"
-        app:showAsAction="ifRoom"/>
+        android:title="Registrarse"
+        app:showAsAction="ifRoom" />
     <item
-        android:title="Iniciar sesión"
         android:id="@+id/loginMenu"
         android:icon="@drawable/ic_login"
-        app:showAsAction="ifRoom"/>
+        android:title="Iniciar sesión"
+        app:showAsAction="ifRoom" />
 
-    <item android:title="Monitorizar"
-        android:id="@+id/monitorizeMenu"/>
-    <item android:title="Mapa"
-        android:id="@+id/mapaMenu"/>
-    <item android:title="Entradas por habitación"
-        android:id="@+id/entradasPorLetraMenu"/>
-    <item android:title="Entradas por habitación y fecha"
-        android:id="@+id/entradasPorLetraYFechaMenu"/>
-    <item android:title="Personas por habitación"
-        android:id="@+id/personasActualPorLetraMenu"/>
-    <item android:title="Personas por habitación y fecha"
-        android:id="@+id/personasActualPorLetraYFechaMenu"/>
-    <item android:title="Beacon más cercano (no en pantalla)"
-        android:id="@+id/closestBeaconMenu"/>
-    <item android:title="Cerrar entradas"
-        android:id="@+id/cerrarEntradas"/>
-    <item android:title="Lista usuarios"
-        android:id="@+id/listaUsuarios"/>
-    <item android:title="Mandar aviso"
+    <item
+        android:id="@+id/monitorizeMenu"
+        android:title="Monitorizar" />
+    <item
+        android:id="@+id/mapaMenu"
+        android:title="Mapa" />
+    <item
+        android:id="@+id/entradasPorLetraMenu"
+        android:title="Entradas por habitación" />
+    <item
+        android:id="@+id/entradasPorLetraYFechaMenu"
+        android:title="Entradas por habitación y fecha" />
+    <item
+        android:id="@+id/personasActualPorLetraMenu"
+        android:title="Personas por habitación" />
+    <item
+        android:id="@+id/personasActualPorLetraYFechaMenu"
+        android:title="Personas por habitación y fecha" />
+    <item
+        android:id="@+id/closestBeaconMenu"
+        android:title="Beacon más cercano (no en pantalla)" />
+    <item
+        android:id="@+id/cerrarEntradas"
+        android:title="Cerrar entradas" />
+    <item
+        android:id="@+id/listaUsuarios"
+        android:title="Lista usuarios" />
+    <item
         android:id="@+id/mandarAviso"
         android:icon="@drawable/ic_message"
-        app:showAsAction="ifRoom"/>
-    <item android:title="Cerrar sesión"
-        android:id="@+id/logoutMenu"/>
+        android:title="Mandar aviso"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/logoutMenu"
+        android:title="Cerrar sesión" />
 </menu>

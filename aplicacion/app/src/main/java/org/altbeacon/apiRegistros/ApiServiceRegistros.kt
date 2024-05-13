@@ -1,9 +1,8 @@
 import com.google.gson.JsonObject
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Body
-import retrofit2.Response
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiServiceRegistros {
@@ -16,7 +15,8 @@ interface ApiServiceRegistros {
 
     @GET("/habitaciones/entradas_por_habitacion")
     suspend fun getEntradasPorLetra(
-        @Query("letra") letra: String): Response<List<Habitacion>>
+        @Query("letra") letra: String
+    ): Response<List<Habitacion>>
 
     @GET("/habitaciones/entradas_por_habitacion_fecha")
     suspend fun getEntradasPorLetraYFecha(
@@ -27,7 +27,8 @@ interface ApiServiceRegistros {
 
     @GET("/habitaciones/personas_actual_habitaciones")
     suspend fun getPersonasActualPorLetra(
-        @Query("letra") letra: String): Response<List<Habitacion>>
+        @Query("letra") letra: String
+    ): Response<List<Habitacion>>
 
     @GET("/habitaciones/personas_actual_fecha")
     suspend fun getPersonasActualPorLetraYFecha(

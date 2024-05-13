@@ -71,17 +71,25 @@ class EditUserActivity : BaseActivity() {
                         emailEditText.setText(user.email)
                         adminSwitch.isChecked = user.admin
                         profesorSwitch.isChecked = user.profesor
-                        despachoEditText.setText(user.despacho?.toString())
+                        despachoEditText.setText(user.despacho.toString())
                     }
                 } else {
                     runOnUiThread {
                         SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditUserActivity)
-                        Toast.makeText(this@EditUserActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@EditUserActivity,
+                            "Tu token ha expirado vuelve a loguearte",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             } catch (e: java.net.SocketTimeoutException) {
                 runOnUiThread {
-                    Toast.makeText(this@EditUserActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@EditUserActivity,
+                        "Vuelve a probar dentro de 1 minuto",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (e: Exception) {
                 runOnUiThread {
@@ -112,22 +120,37 @@ class EditUserActivity : BaseActivity() {
             progressBar.visibility = View.VISIBLE
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response = ApiClientUsuarios.updateUser(this@EditUserActivity, userId, request)
+                    val response =
+                        ApiClientUsuarios.updateUser(this@EditUserActivity, userId, request)
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             runOnUiThread {
-                                Toast.makeText(this@EditUserActivity, "Se han actualizado los datos exitosamente", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@EditUserActivity,
+                                    "Se han actualizado los datos exitosamente",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         } else {
                             runOnUiThread {
-                                SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@EditUserActivity)
-                                Toast.makeText(this@EditUserActivity, "Tu token ha expirado vuelve a loguearte", Toast.LENGTH_SHORT).show()
+                                SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(
+                                    this@EditUserActivity
+                                )
+                                Toast.makeText(
+                                    this@EditUserActivity,
+                                    "Tu token ha expirado vuelve a loguearte",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
                 } catch (e: java.net.SocketTimeoutException) {
                     runOnUiThread {
-                        Toast.makeText(this@EditUserActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@EditUserActivity,
+                            "Vuelve a probar dentro de 1 minuto",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } catch (e: Exception) {
                     runOnUiThread {
@@ -148,7 +171,8 @@ class EditUserActivity : BaseActivity() {
     }
 
     fun hideKeyboard(activity: Activity) {
-        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = activity.currentFocus
         if (view == null) {
             view = View(activity)

@@ -1,7 +1,6 @@
 package org.altbeacon.etsiindoor
 
 import org.altbeacon.beacon.Beacon
-import java.util.ArrayList
 
 /*
  * This class is used to smooth out the beacon ranging data to prevent periodic dropouts.  By
@@ -26,6 +25,7 @@ class BeaconRangingSmoother {
             }
             return visible
         }
+
     fun add(detectedBeacons: Collection<Beacon>): BeaconRangingSmoother {
         for (beacon in detectedBeacons) {
             beacon.lastCycleDetectionTimestamp = System.currentTimeMillis()
@@ -33,6 +33,7 @@ class BeaconRangingSmoother {
         }
         return this
     }
+
     companion object {
         val TAG = "BeaconRangingSmoother"
         val shared = BeaconRangingSmoother()

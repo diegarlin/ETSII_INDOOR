@@ -7,34 +7,35 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.etsiindoor.ETSIINDOOR
 import org.altbeacon.etsiindoor.EntradasPorLetraActivity
 import org.altbeacon.etsiindoor.EntradasPorLetraYFechaActivity
 import org.altbeacon.etsiindoor.LoginActivity
+import org.altbeacon.etsiindoor.MainActivity
+import org.altbeacon.etsiindoor.MandarAvisoActivity
 import org.altbeacon.etsiindoor.MapaActivity
 import org.altbeacon.etsiindoor.MonitorizarActivity
 import org.altbeacon.etsiindoor.PersonasActualPorLetraActivity
 import org.altbeacon.etsiindoor.PersonasActualPorLetraYFechaActivity
 import org.altbeacon.etsiindoor.R
 import org.altbeacon.etsiindoor.RegisterActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.altbeacon.apiUsers.ApiClientUsuarios
-import org.altbeacon.etsiindoor.MainActivity
-import org.altbeacon.etsiindoor.MandarAvisoActivity
 import org.altbeacon.etsiindoor.UsersActivity
 
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
 
     protected fun setupToolbar(toolbarId: Int) {
         toolbar = findViewById(toolbarId)
         setSupportActionBar(toolbar)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu)
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
 
         return true
     }
@@ -58,46 +59,55 @@ open class BaseActivity: AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
             R.id.loginMenu -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.monitorizeMenu -> {
                 val intent = Intent(this, MonitorizarActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.mapaMenu -> {
                 val intent = Intent(this, MapaActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.entradasPorLetraMenu -> {
                 val intent = Intent(this, EntradasPorLetraActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.entradasPorLetraYFechaMenu -> {
                 val intent = Intent(this, EntradasPorLetraYFechaActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.personasActualPorLetraMenu -> {
                 val intent = Intent(this, PersonasActualPorLetraActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.personasActualPorLetraYFechaMenu -> {
                 val intent = Intent(this, PersonasActualPorLetraYFechaActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             R.id.closestBeaconMenu -> {
                 val beaconTracker = (application as ETSIINDOOR).beaconTracker
                 beaconTracker.updateRoomRecords()
                 true
             }
+
             R.id.logoutMenu -> {
                 SharedPreferencesManager.clearTokenAndAdminFromSharedPreferences(this@BaseActivity)
                 Toast.makeText(this@BaseActivity, "Logout exitoso", Toast.LENGTH_SHORT).show()
@@ -107,41 +117,64 @@ open class BaseActivity: AppCompatActivity() {
                 true
 
             }
+
             R.id.cerrarEntradas -> {
                 val token = SharedPreferencesManager.getTokenFromSharedPreferences(this)
                 Log.d("api", token.toString())
                 if (token != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            val response = ApiClientUsuarios.cerrar_entradas(this@BaseActivity, token.toString())
+                            val response = ApiClientUsuarios.cerrar_entradas(
+                                this@BaseActivity,
+                                token.toString()
+                            )
                             withContext(Dispatchers.Main) {
                                 if (response.isSuccessful) {
-                                    Toast.makeText(this@BaseActivity, "Has cerrado las entradas con éxito", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this@BaseActivity,
+                                        "Has cerrado las entradas con éxito",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 } else {
-                                    Toast.makeText(this@BaseActivity, "Error al cerrar las entradas", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this@BaseActivity,
+                                        "Error al cerrar las entradas",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                         } catch (e: java.net.SocketTimeoutException) {
                             withContext(Dispatchers.Main) {
-                                Toast.makeText(this@BaseActivity, "Ha habido un problema con el servidor. Prueba en 1 minuto.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BaseActivity,
+                                    "Ha habido un problema con el servidor. Prueba en 1 minuto.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
                 } else {
-                    Toast.makeText(this@BaseActivity, "No se encontró el token. Logueate de nuevo o por primera vez", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@BaseActivity,
+                        "No se encontró el token. Logueate de nuevo o por primera vez",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 true
             }
+
             R.id.mandarAviso -> {
                 val intent = Intent(this, MandarAvisoActivity::class.java)
                 startActivity(intent)
                 true
             }
-            R.id.listaUsuarios ->{
+
+            R.id.listaUsuarios -> {
                 val intent = Intent(this, UsersActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -5,11 +5,11 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
 import android.provider.Settings
 import android.util.Log
-import android.os.PowerManager
-import android.os.Build
 import android.widget.Toast
 import org.altbeacon.beacon.permissions.BeaconScanPermissionsActivity
 import org.altbeacon.utils.BaseActivity
@@ -36,6 +36,7 @@ class MainActivity : BaseActivity() {
         Log.d(TAG, "onPause")
         super.onPause()
     }
+
     override fun onResume() {
         Log.d(TAG, "onResume")
         super.onResume()
@@ -44,7 +45,8 @@ class MainActivity : BaseActivity() {
             if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) ||
                 shouldShowRequestPermissionRationale(Manifest.permission.BLUETOOTH_SCAN) ||
                 shouldShowRequestPermissionRationale(Manifest.permission.BLUETOOTH_CONNECT) ||
-                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+            ) {
                 // Los permisos fueron denegados, pero el usuario no seleccionó "No preguntar de nuevo", por lo que podemos solicitarlos de nuevo
                 val intent = Intent(this, BeaconScanPermissionsActivity::class.java)
                 intent.putExtra("backgroundAccessRequested", true)
@@ -77,6 +79,7 @@ class MainActivity : BaseActivity() {
             }
         }
     }
+
     companion object {
         val TAG = "MainActivity"
         val PERMISSION_REQUEST_BACKGROUND_LOCATION = 0

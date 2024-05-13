@@ -63,8 +63,8 @@
 
     <style name="MyTitleTextStyle" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="android:textColor">@color/md_theme_primary</item>
-<!--        <item name="android:textSize">30sp</item>-->
-<!--        <item name="android:textStyle">bold</item>-->
+        <!--        <item name="android:textSize">30sp</item>-->
+        <!--        <item name="android:textStyle">bold</item>-->
     </style>
 
     <style name="MyNormalTextStyle" parent="TextAppearance.Material3.DisplayMedium">

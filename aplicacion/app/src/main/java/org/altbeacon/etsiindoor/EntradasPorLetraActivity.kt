@@ -1,13 +1,13 @@
 package org.altbeacon.etsiindoor
 
+import ApiClientRegistros
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.ProgressBar
-import ApiClientRegistros
-import android.util.Log
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.CoroutineScope
@@ -42,49 +42,58 @@ class EntradasPorLetraActivity : BaseActivity() {
             }
 
 
-                progressBar.visibility = View.VISIBLE
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        val response = ApiClientRegistros.getEntradasPorLetra(letra)
+            progressBar.visibility = View.VISIBLE
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = ApiClientRegistros.getEntradasPorLetra(letra)
 
-                        if (response.isSuccessful && response.body() != null) {
-                            val habitaciones = response.body()!!
+                    if (response.isSuccessful && response.body() != null) {
+                        val habitaciones = response.body()!!
 
-                            runOnUiThread {
-                                if (habitaciones.isEmpty()) {
-                                    listView.visibility = View.GONE
-                                    emptyTextView.visibility = View.VISIBLE
-                                } else {
-                                    listView.visibility = View.VISIBLE
-                                    emptyTextView.visibility = View.GONE
-                                    listView.adapter = HabitacionAdapter(this@EntradasPorLetraActivity, habitaciones)
-                                }
-                            }
-                        } else {
-                            Log.d("api",response.toString() )
-                            runOnUiThread {
-                                Toast.makeText(this@EntradasPorLetraActivity, "Error al obtener los registros", Toast.LENGTH_SHORT).show()
+                        runOnUiThread {
+                            if (habitaciones.isEmpty()) {
+                                listView.visibility = View.GONE
+                                emptyTextView.visibility = View.VISIBLE
+                            } else {
+                                listView.visibility = View.VISIBLE
+                                emptyTextView.visibility = View.GONE
+                                listView.adapter =
+                                    HabitacionAdapter(this@EntradasPorLetraActivity, habitaciones)
                             }
                         }
-                    } catch (e: java.net.SocketTimeoutException) {
+                    } else {
+                        Log.d("api", response.toString())
                         runOnUiThread {
-                            Toast.makeText(this@EntradasPorLetraActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
-                        }
-                    }catch(e: Exception){
-                        runOnUiThread {
-                            Log.d("api","Exception: "+ e.toString())
                             Toast.makeText(
                                 this@EntradasPorLetraActivity,
-                                "Error al obtener los registros. Contacte con el administrador",
+                                "Error al obtener los registros",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    } finally {
-                        runOnUiThread {
-                            progressBar.visibility = View.GONE
-                        }
+                    }
+                } catch (e: java.net.SocketTimeoutException) {
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@EntradasPorLetraActivity,
+                            "Vuelve a probar dentro de 1 minuto",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    runOnUiThread {
+                        Log.d("api", "Exception: " + e.toString())
+                        Toast.makeText(
+                            this@EntradasPorLetraActivity,
+                            "Error al obtener los registros. Contacte con el administrador",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } finally {
+                    runOnUiThread {
+                        progressBar.visibility = View.GONE
                     }
                 }
+            }
 
         }
     }

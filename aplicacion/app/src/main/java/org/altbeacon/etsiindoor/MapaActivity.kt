@@ -11,8 +11,8 @@ import org.altbeacon.utils.BaseActivity
 
 class MapaActivity : BaseActivity() {
 
-        @SuppressLint("SetJavaScriptEnabled")
-        override fun onCreate(savedInstanceState: Bundle?) {
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mapa_activity)
         setupToolbar(R.id.toolbar)
@@ -26,10 +26,13 @@ class MapaActivity : BaseActivity() {
 
         webView.webChromeClient = WebChromeClient()
         webView.webViewClient = object : WebViewClient() {
-        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-        view?.loadUrl(request?.url.toString())
-        return true
-                }
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                view?.loadUrl(request?.url.toString())
+                return true
+            }
         }
 
         webView.loadUrl("https://ap.cs.ucy.ac.cy/viewer/?buid=building_3f91a8fd-ca7b-4d7e-bc04-626e2623d229_1704557723480&floor=0")

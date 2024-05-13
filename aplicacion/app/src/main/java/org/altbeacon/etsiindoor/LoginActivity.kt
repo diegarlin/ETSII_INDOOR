@@ -4,20 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.altbeacon.apiUsers.ApiClientUsuarios
-import android.widget.TextView
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.altbeacon.apiUsers.ApiClientUsuarios
 import org.altbeacon.utils.BaseActivity
 import org.altbeacon.utils.SharedPreferencesManager
 
@@ -48,7 +48,8 @@ class LoginActivity : BaseActivity() {
             hideKeyboard(this@LoginActivity)
 
             if (usernameOrEmail.isBlank() || password.isBlank()) {
-                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 loginUser(usernameOrEmail, password)
             }
@@ -72,7 +73,8 @@ class LoginActivity : BaseActivity() {
             try {
                 // Realiza la llamada a la API para el inicio de sesión
                 val deviceID = ETSIINDOOR.deviceID
-                val response = ApiClientUsuarios.login(this@LoginActivity, usernameOrEmail, password, deviceID)
+                val response =
+                    ApiClientUsuarios.login(this@LoginActivity, usernameOrEmail, password, deviceID)
 
                 // Verifica si la respuesta es exitosa
                 if (response.isSuccessful) {
@@ -83,7 +85,11 @@ class LoginActivity : BaseActivity() {
                     val admin = responseBody?.get("admin")?.asBoolean
 
                     if (!token.isNullOrBlank() && admin != null) {
-                        SharedPreferencesManager.saveTokenAndAdminToSharedPreferences(this@LoginActivity, token, admin)
+                        SharedPreferencesManager.saveTokenAndAdminToSharedPreferences(
+                            this@LoginActivity,
+                            token,
+                            admin
+                        )
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.putExtra("TOAST_MESSAGE", "Inicio de sesión exitoso")
                         startActivity(intent)
@@ -101,9 +107,13 @@ class LoginActivity : BaseActivity() {
                 }
             } catch (e: java.net.SocketTimeoutException) {
                 runOnUiThread {
-                    Toast.makeText(this@LoginActivity, "Vuelve a probar dentro de 1 minuto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Vuelve a probar dentro de 1 minuto",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 runOnUiThread {
                     Log.d("api", "Exception: ", e)
                     Toast.makeText(
@@ -112,7 +122,7 @@ class LoginActivity : BaseActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }finally {
+            } finally {
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE
                 }
@@ -121,7 +131,8 @@ class LoginActivity : BaseActivity() {
     }
 
     fun hideKeyboard(activity: Activity) {
-        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         // Verifica si no hay vista enfocada, ya que en ese caso el teclado se ocultará
         var view = activity.currentFocus
         if (view == null) {

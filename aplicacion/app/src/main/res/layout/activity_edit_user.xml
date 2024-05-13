@@ -57,8 +57,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/MyTextInputLayoutStyle"
         android:id="@+id/emailTextInputLayout"
+        style="@style/MyTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,9 +68,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameTextInputLayout"
+        app:startIconDrawable="@drawable/ic_email"
         tools:layout_conversion_absoluteHeight="61dp"
-        tools:layout_conversion_absoluteWidth="379dp"
-        app:startIconDrawable="@drawable/ic_email">
+        tools:layout_conversion_absoluteWidth="379dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
@@ -90,9 +90,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Admin"
         android:scaleX="1.07"
         android:scaleY="1.07"
+        android:text="Admin"
         android:textColor="@color/md_theme_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.236"
@@ -103,12 +103,12 @@
         android:id="@+id/profesorSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleX="1.07"
+        android:scaleY="1.07"
         android:text="Profesor"
         android:textColor="@color/md_theme_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.851"
-        android:scaleX="1.07"
-        android:scaleY="1.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/adminSwitch" />
 
