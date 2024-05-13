@@ -94,7 +94,7 @@ class ETSIINDOOR : Application() {
     fun setupForegroundService() {
         val builder = Notification.Builder(this, "BeaconReferenceApp")
         builder.setSmallIcon(R.drawable.ic_launcher_foreground)
-        builder.setContentTitle("Scanning for Beacons")
+        builder.setContentTitle("Escaneando beacons")
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT + PendingIntent.FLAG_IMMUTABLE
