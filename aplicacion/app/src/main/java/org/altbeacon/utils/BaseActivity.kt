@@ -31,6 +31,11 @@ open class BaseActivity : AppCompatActivity() {
     protected fun setupToolbar(toolbarId: Int) {
         toolbar = findViewById(toolbarId)
         setSupportActionBar(toolbar)
+
+        toolbar.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,7 +65,6 @@ open class BaseActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-
             R.id.loginMenu -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)

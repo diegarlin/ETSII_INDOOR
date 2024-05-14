@@ -5,7 +5,7 @@
     <item
         android:id="@+id/registerMenu"
         android:icon="@drawable/ic_register"
-        android:title="Registrarse"
+        android:title="Registro"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/loginMenu"
