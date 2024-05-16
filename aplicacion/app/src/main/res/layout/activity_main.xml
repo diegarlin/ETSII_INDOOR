@@ -13,13 +13,7 @@
         android:layout_height="wrap_content" />
 
 
-    <TextView
-        style="@style/MyNormalTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="113dp"
-        android:layout_marginTop="0dp"
-        android:gravity="center"
-        android:text="Estas son todas las funcionalidades que existen en la aplicación hasta ahora." />
+
 
     <Button
         android:id="@+id/registerButton"
@@ -55,7 +49,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginRight="12dp"
-        android:text="Entradas por habitación" />
+        android:text="Entradas actual" />
 
     <Button
         android:id="@+id/entradasPorLetraYFechaButton"
@@ -64,7 +58,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginRight="12dp"
-        android:text="Entradas por habitación y fecha" />
+        android:text="Entradas histórico" />
 
     <Button
         android:id="@+id/personasActualPorLetraButton"
@@ -73,7 +67,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginRight="12dp"
-        android:text="Personas por habitación" />
+        android:text="Ocupación actual" />
 
     <Button
         android:id="@+id/personasActualPorLetraYFechaButton"
@@ -82,7 +76,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginRight="12dp"
-        android:text="Personas por habitación y fecha" />
+        android:text="Ocupación histórico" />
 
     <Button
         android:id="@+id/monitorizeButton"

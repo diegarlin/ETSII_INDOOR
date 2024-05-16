@@ -18,16 +18,16 @@
         android:title="Mapa" />
     <item
         android:id="@+id/entradasPorLetraMenu"
-        android:title="Entradas por habitación" />
+        android:title="Entradas actual" />
     <item
         android:id="@+id/entradasPorLetraYFechaMenu"
-        android:title="Entradas por habitación y fecha" />
+        android:title="Entradas histórico" />
     <item
         android:id="@+id/personasActualPorLetraMenu"
-        android:title="Personas por habitación" />
+        android:title="Ocupación actual" />
     <item
         android:id="@+id/personasActualPorLetraYFechaMenu"
-        android:title="Personas por habitación y fecha" />
+        android:title="Ocupación histórico" />
     <item
         android:id="@+id/monitorizeMenu"
         android:title="Monitorizar" />
