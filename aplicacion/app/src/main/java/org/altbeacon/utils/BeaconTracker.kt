@@ -203,10 +203,10 @@ class BeaconTracker(private val etsiindoor: ETSIINDOOR) {
             Log.d("org.altbeacon.utils.BeaconTracker", new_number.toString())
 
             val new_description = "Número de personas: $new_number"
-
+            val puid = poi["puid"].toString()
             val update_poi_data = mapOf(
                 "buid" to "building_3f91a8fd-ca7b-4d7e-bc04-626e2623d229_1704557723480",
-                "puid" to "poi_9b57957a-332d-43c2-8ddd-4b01fabfc53d",
+                "puid" to puid,
                 "description" to new_description
             )
 
